@@ -68,7 +68,7 @@ const DashboardLayout = () => {
         p={2}
         sx={{
           backgroundColor: theme.palette.background.paper,
-          height: "95vh",
+          height: "100vh",
           width: 100,
           boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
         }}

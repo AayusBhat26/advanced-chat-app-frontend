@@ -1,11 +1,16 @@
 import React from "react";
+import Chats from "./Chats";
+import { Box } from "@mui/material";
 
 const GeneralApp = () => {
 
   return (
-    <>
-      App
-    </>
+   <Box sx={{
+    display:"flex", 
+    // justifyContent:''
+   }}>
+    <Chats/>
+   </Box>
   );
 };
 

@@ -7,6 +7,7 @@ import DashboardLayout from "../layouts/dashboard";
 // config
 import { DEFAULT_PATH } from "../config";
 import LoadingScreen from "../components/LoadingScreen";
+import { Box } from "@mui/material";
 
 const Loadable = (Component) => (props) => {
   return (
@@ -17,7 +18,12 @@ const Loadable = (Component) => (props) => {
 };
 
 export default function Router() {
-  return useRoutes([
+  return (
+    <Box sx={{
+      display: 'flex',
+    }}>
+    {
+    useRoutes([
     {
       path: "/",
       element: <DashboardLayout />,
@@ -30,7 +36,10 @@ export default function Router() {
       ],
     },
     { path: "*", element: <Navigate to="/404" replace /> },
-  ]);
+  ])
+}
+  </Box>
+  )
 }
 
 const GeneralApp = Loadable(
