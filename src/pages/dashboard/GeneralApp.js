@@ -1,16 +1,33 @@
 import React from "react";
 import Chats from "./Chats";
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
+import Converstion from "../../components/converstion";
+import { useTheme } from "@emotion/react";
 
 const GeneralApp = () => {
-
+  const theme = useTheme();
   return (
-   <Box sx={{
-    display:"flex", 
-    // justifyContent:''
-   }}>
-    <Chats/>
-   </Box>
+    <Stack
+      direction={"row"}
+      sx={{
+        width: "100%",
+      }}
+    >
+      {/* single chat component */}
+      <Chats />
+      {/*converstion */}
+      <Box
+        sx={{
+          height: "100%",
+          width: "calc(100vw - 420px)",
+          backgroundColor: theme.palette.mode==="light" ? "#fff" : theme.palette.background.default,
+        }}
+      >
+
+        <Converstion></Converstion>
+
+      </Box>
+    </Stack>
   );
 };
 
