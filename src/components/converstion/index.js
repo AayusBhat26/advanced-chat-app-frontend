@@ -55,7 +55,10 @@ const Converstion = () => {
         sx={{
           height: 100,
           width: "100%",
-          backgroundColor: "#F8FAFF",
+          backgroundColor:
+            theme.palette.mode === "light"
+              ? "#fff"
+              : theme.palette.background.default,
           boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.35) ",
           borderRadius: 1.6,
         }}
@@ -126,6 +129,8 @@ const Converstion = () => {
           //     height: 100,
           width: "100%",
           backgroundColor: "#F8FAFF",
+      //     change the background color in future if the current combonation does not look that good in future
+          //      backgroundColor: theme.palette.mode==="light" ? "#fff" : theme.palette.background.default,
           boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.35) ",
           borderRadius: 1.6,
         }}
@@ -157,17 +162,23 @@ const Converstion = () => {
             sx={{
               height: 48,
               width: 48,
-              backgroundColor: theme.palette.primary.main,
+              backgroundColor:
+                theme.palette.mode === "light"
+                  ? "#fff"
+                  : theme.palette.background.default,
               borderRadius: 1.6,
             }}
           >
-            <Stack sx={{
-                  height:"100%", 
-                  width:"100%",
-
-            }} alignItems={"center"} justifyContent={"center"}>
+            <Stack
+              sx={{
+                height: "100%",
+                width: "100%",
+              }}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
               <IconButton>
-                <PaperPlaneTilt color="#fff"/>
+                <PaperPlaneTilt color="#fff" />
               </IconButton>
             </Stack>
           </Box>
