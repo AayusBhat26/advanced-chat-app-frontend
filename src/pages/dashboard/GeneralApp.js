@@ -24,7 +24,7 @@ const GeneralApp = () => {
         }}
       >
 
-        <Converstion></Converstion>
+        <Converstion />
 
       </Box>
     </Stack>

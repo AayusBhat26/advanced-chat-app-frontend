@@ -20,7 +20,7 @@ import React from "react";
 import { faker } from "@faker-js/faker";
 
 // import SimpleBarStyle from '../../components/Scrollbar';
-import { SimpleBarStyle } from "../../components/Scrollbar";
+// import { SimpleBarStyle } from "../../components/Scrollbar";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -60,6 +60,7 @@ const ChatElement = ({id, name, img, msg, time, unread, online}) => {
         borderRadius: 1,
         backgroundColor: theme.palette.mode==="light" ?"#fff" :theme.palette.background.de
       }}
+      border={"0.4px solid black"}
       p={2}
     >
       <Stack
@@ -137,7 +138,10 @@ const Chats = () => {
         position: "relative",
         // height: "99%",
         width: 320,
-        backgroundColor: theme.palette.mode==="light" ? "#F8FAFF" :theme.palette.background.paper,
+        backgroundColor:
+          theme.palette.mode === "light"
+            ? "#F8FAFF"
+            : theme.palette.background.paper,
         boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
       }}
     >
@@ -154,7 +158,9 @@ const Chats = () => {
           justifyContent={"space-between"}
           alignItems={"center"}
         >
-          <Typography variant="h5">Chats</Typography>
+          <Typography fontSize={"18px"} fontWeight={"1000"}>
+            Social.Messages
+          </Typography>
           <IconButton>
             <Alien size={40} />
           </IconButton>
@@ -175,9 +181,13 @@ const Chats = () => {
           <Stack direction={"row"} alignItems={"center"} spacing={2}>
             <Archive size={20} />
             <Button>
-              <Typography fontSize={"14px"} fontWeight={"1000"}>
-                Archive
+              <Typography fontSize={"14px"} fontWeight={"500"} color="#676767">
+                Social.Messages.Archived
+                {/* {theme.palette.mode === "light"
+            ? "#F8FAFF"
+            : theme.palette.background.paper} */}
               </Typography>
+              <Divider />
             </Button>
           </Stack>
           <Divider />
@@ -194,41 +204,43 @@ const Chats = () => {
           }}
         >
           {/* pinned chats */}
-          
-            <Stack spacing={2.5}>
-              <Typography
-                variant="subtitle2"
-                sx={{
-                  color: "#676767",
-                }}
-              >
-                Pinned Messages
-              </Typography>
-              {ChatList.filter((element) => element.pinned).map(
-                (singleChat) => {
-                  return <ChatElement {...singleChat} />;
-                }
-              )}
-              {/* todo: create a pinned messages section. */}
-            </Stack>
 
-            {/* todo: create all messages section */}
-            <Stack spacing={2.5}>
-              <Typography
-                variant="subtitle2"
-                sx={{
-                  color: "#676767",
-                }}
-              >
-                Other Messages
-              </Typography>
-              {ChatList.filter((element) => !element.pinned).map(
-                (singleChat) => {
-                  return <ChatElement {...singleChat} />;
-                }
-              )}
-            </Stack>
-         
+          <Stack spacing={1.5}>
+            <Typography
+              // variant="subtitle2"
+              fontSize={"16px"}
+              fontWeight={"800"}
+              sx={{
+                color: "#676767",
+              }}
+            >
+              Social.Messages.Pinned
+            </Typography>
+            <Divider />
+
+            {ChatList.filter((element) => element.pinned).map((singleChat) => {
+              return <ChatElement {...singleChat} />;
+            })}
+            {/* todo: create a pinned messages section. */}
+          </Stack>
+
+          {/* todo: create all messages section */}
+          <Stack spacing={1.5}>
+            <Typography
+              fontSize={"16px"}
+              fontWeight={"800"}
+              sx={{
+                color: "#676767",
+              }}
+            >
+              Socials.Messages.Others
+            </Typography>
+            <Divider />
+
+            {ChatList.filter((element) => !element.pinned).map((singleChat) => {
+              return <ChatElement {...singleChat} />;
+            })}
+          </Stack>
         </Stack>
       </Stack>
     </Box>
