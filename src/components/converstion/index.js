@@ -1,9 +1,10 @@
-import { useTheme } from "@emotion/react";
-import { Stack, Box, IconButton, TextField, InputAdornment } from "@mui/material";
+
+import { Stack, Box } from "@mui/material";
 
 import React from "react";
 import Header from "./Header";
-import ChatFooter from "../ChatFooter/ChatFooter";
+import ChatFooter from "../converstion/ChatFooter";
+import Messages from "./Messages";
 
 
 
@@ -20,7 +21,11 @@ const Converstion = () => {
         sx={{
           flexGrow: 1,
         }}
-      ></Box>
+      >
+        <Messages/>
+
+
+      </Box>
       {/* <>chat footer</> */}
       <ChatFooter/>
       
