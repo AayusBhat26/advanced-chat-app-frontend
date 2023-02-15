@@ -1,7 +1,7 @@
 import { Box, Stack } from "@mui/material";
 import { Chat_History } from "../../data/index";
 import React from "react";
-import { LinkMessage, MediaMessage, ReplyMessage, TextMessage, Timeline } from "./MessagesType";
+import { DocMessage, LinkMessage, MediaMessage, ReplyMessage, TextMessage, Timeline } from "./MessagesType";
 
 const Messages = () => {
   return (
@@ -12,7 +12,7 @@ const Messages = () => {
             case "divider":
               // Timeline
               return <Timeline singleChat={singleChat} />;
-              break;
+             
             case "msg":
               switch (singleChat.subtype) {
                 case "img":
@@ -20,7 +20,8 @@ const Messages = () => {
                   return <MediaMessage singleChat={singleChat}/>
                 case "doc":
                   // document
-                  break;
+                  return <DocMessage singleChat={singleChat}/>;
+                 
                 case "link":
                   // link
                   return <LinkMessage singleChat={singleChat} />;
@@ -30,7 +31,7 @@ const Messages = () => {
                 default:
                   return <TextMessage singleChat={singleChat} />;
               }
-              break;
+             
             default:
               return <></>;
           }

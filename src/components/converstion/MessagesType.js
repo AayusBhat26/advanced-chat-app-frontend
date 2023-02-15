@@ -1,4 +1,5 @@
-import { Box, Divider, Link, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Divider, IconButton, Link, Stack, Typography, useTheme } from "@mui/material";
+import { Download, Image } from "phosphor-react";
 import React from "react";
 // TODO: create a timeline component
 const Timeline = ({ singleChat }) => {
@@ -144,8 +145,8 @@ const ReplyMessage = ({ singleChat }) => {
   );
 };
 // todo: link message
-const LinkMessage = ({singleChat}) => {
-      const theme = useTheme();
+const LinkMessage = ({ singleChat }) => {
+  const theme = useTheme();
   return (
     <Stack
       direction={"row"}
@@ -181,14 +182,24 @@ const LinkMessage = ({singleChat}) => {
             />
             <Stack spacing={2}>
               <Typography variant="subtitle2">test image message</Typography>
-              <Typography variant="subtitle2" sx={{
-                  color:theme.palette.primary.main
-              }} component={Link} to={"//https:github.com"}> github.com
-            </Typography>
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  color: theme.palette.primary.main,
+                }}
+                component={Link}
+                to={"//https:github.com"}
+              >
+                {" "}
+                github.com
+              </Typography>
             </Stack>
-            <Typography variant="body2" color={singleChat.incoming ? theme.palette.text : "#fff"}>{
-                  singleChat.message
-            }</Typography>
+            <Typography
+              variant="body2"
+              color={singleChat.incoming ? theme.palette.text : "#fff"}
+            >
+              {singleChat.message}
+            </Typography>
           </Stack>
         </Stack>
       </Box>
@@ -196,7 +207,51 @@ const LinkMessage = ({singleChat}) => {
   );
 };
 // todo: create a document message
+const DocMessage = ({ singleChat }) => {
+  const theme = useTheme();
+  return (
+    <Stack
+      spacing={1.25}
+      direction={"row"}
+      justifyContent={singleChat.incoming ? "start" : "end"}
+    >
+      <Box
+        p={1.25}
+        sx={{
+          backgroundColor: singleChat.incoming
+            ? theme.palette.background.default
+            : theme.palette.primary.main,
+          borderRadius: 1.25,
+          width: "max-content",
+        }}
+      >
+        <Stack spacing={1.25} direction={"column"}>
+          <Stack
+            p={2}
+            direction={"row"}
+            spacing={3}
+            alignItems={"center"}
+            sx={{
+              backgroundColor: theme.palette.background.paper,
+              borderRadius: 1.25,
+            }}
+          >
+            <Image size={44} />
+            <Typography variant="caption"> Image.png</Typography>
+            <IconButton>
+              <Download />
+            </IconButton>
+          </Stack>
+          <Typography
+            variant="body2"
+            color={singleChat.incoming ? theme.palette.text : "#fff"}
+          >
+            {singleChat.message}
+          </Typography>
+        </Stack>
+      </Box>
+    </Stack>
+  );
+};
 
-
-
-export { Timeline, TextMessage, MediaMessage, ReplyMessage, LinkMessage };
+export { Timeline, TextMessage, MediaMessage, ReplyMessage, LinkMessage, DocMessage };

@@ -5,7 +5,7 @@ import {
   TextField,
   InputAdornment,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import {
   LinkSimpleHorizontal,
@@ -14,14 +14,49 @@ import {
 } from "phosphor-react";
 import { useTheme } from "@emotion/react";
 
+//-------------------------emoji-pikcer-react----------------------
+
+import EmojiPicker from "emoji-picker-react";
+//---------------------------------------------------------
+
 const StyledInput = styled(TextField)(({ theme }) => ({
   "& .MuiInputBase-input": {
     paddingTop: "12px",
     paddingBottom: "12px",
   },
 }));
+const ChatInput = ({ setOpenEmoji }) => {
+  return (
+    <StyledInput
+      fullWidth
+      color="black"
+      placeholder="Messages.new"
+      variant="filled"
+      InputProps={{
+        disableUnderline: true,
+        startAdornment: (
+          <InputAdornment>
+            <IconButton>
+              <LinkSimpleHorizontal />
+            </IconButton>
+          </InputAdornment>
+        ),
+        endAdornment: (
+          <InputAdornment>
+            <IconButton>
+              <SmileySticker onClick={()=>{
+                setOpenEmoji((old)=>!old)
+              }}/>
+            </IconButton>
+          </InputAdornment>
+        ),
+      }}
+    />
+  );
+};
 const ChatFooter = () => {
   const theme = useTheme();
+  const [openEmoji, setOpenEmoji] = useState(false);
   return (
     <Box
       p={2}
@@ -39,29 +74,21 @@ const ChatFooter = () => {
       }}
     >
       <Stack direction={"row"} alignItems={"center"} spacing={3}>
-        <StyledInput
-          fullWidth
-          color="black"
-          placeholder="Messages.new"
-          variant="filled"
-          InputProps={{
-            disableUnderline: true,
-            startAdornment: (
-              <InputAdornment>
-                <IconButton>
-                  <LinkSimpleHorizontal />
-                </IconButton>
-              </InputAdornment>
-            ),
-            endAdornment: (
-              <InputAdornment>
-                <IconButton>
-                  <SmileySticker />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
+        <Stack width={"100%"}>
+          <Box
+            sx={{
+              display: openEmoji ? "inline" : "none",
+              zIndex: 10,
+              position: "fixed",
+              bottom: "81px",
+              right: "100px",
+            }}
+          >
+            <EmojiPicker theme={theme.palette.mode} />
+          </Box>
+          <ChatInput setOpenEmoji={setOpenEmoji} />
+        </Stack>
+        {/* chat input */}
         <Box
           sx={{
             height: 48,
@@ -72,20 +99,20 @@ const ChatFooter = () => {
                 : theme.palette.background.default,
             borderRadius: 1.6,
           }}
+        ></Box>
+
+        <Stack
+          sx={{
+            height: "100%",
+            width: "100%",
+          }}
+          alignItems={"center"}
+          justifyContent={"center"}
         >
-          <Stack
-            sx={{
-              height: "100%",
-              width: "100%",
-            }}
-            alignItems={"center"}
-            justifyContent={"center"}
-          >
-            <IconButton>
-              <PaperPlaneTilt color="#fff" />
-            </IconButton>
-          </Stack>
-        </Box>
+          <IconButton>
+            <PaperPlaneTilt color="#fff" />
+          </IconButton>
+        </Stack>
       </Stack>
     </Box>
   );

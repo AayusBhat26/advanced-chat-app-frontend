@@ -6,7 +6,7 @@ import Header from "./Header";
 import ChatFooter from "../converstion/ChatFooter";
 import Messages from "./Messages";
 
-
+// main file for complete converstion component. 
 
 // styled message input
 
@@ -20,6 +20,7 @@ const Converstion = () => {
         width={"100%"}
         sx={{
           flexGrow: 1,
+          height: "100%", overflowY:"scroll", scrollBehavior:"smooth"
         }}
       >
         <Messages/>
