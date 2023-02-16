@@ -1,21 +1,35 @@
-import React, { useState } from 'react'
-import { Box, Divider, IconButton, Avatar, Switch } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Box,
+  Divider,
+  IconButton,
+  Avatar,
+  Switch,
+  Menu,
+  MenuItem,
+} from "@mui/material";
 import Logo from "../../assets/Images/logo.png";
 import { Stack } from "@mui/system";
-import { Nav_Buttons } from "../../data";
+import { Nav_Buttons, Profile_Menu } from "../../data";
 import { Gear } from "phosphor-react";
 import { faker } from "@faker-js/faker";
-import {
-      useTheme
-} from "@mui/material/styles";
-import useSettings from '../../hooks/useSettings';
-import MaterialUISwitch from '../../components/MaterialUISwitch/MaterialUISwitch';
+import { useTheme } from "@mui/material/styles";
+import useSettings from "../../hooks/useSettings";
+import MaterialUISwitch from "../../components/MaterialUISwitch/MaterialUISwitch";
 
 const SideBar = () => {
-      const theme = useTheme();
-      // console.log(theme);
-      const [selected, setSelected] = useState(0);
-      const { onToggleMode } = useSettings();
+  const theme = useTheme();
+  // console.log(theme);
+  const [selected, setSelected] = useState(0);
+  const { onToggleMode } = useSettings();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <Box
       p={2}
@@ -151,11 +165,46 @@ const SideBar = () => {
             }}
             defaultChecked
           />
-          <Avatar src={faker.image.avatar()} alt="avatar" />
+          <Avatar
+            src={faker.image.avatar()}
+            alt="avatar"
+            id="basic-button"
+            aria-controls={open ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick}
+          />
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+          >
+            <Stack spacing={1} px={1}>
+              {Profile_Menu.map((singleAction) => {
+                return (
+                  <MenuItem onClick={handleClick}>
+                    {singleAction.title}
+                  </MenuItem>
+                );
+              })}
+            </Stack>
+          </Menu>
         </Stack>
       </Stack>
     </Box>
   );
-}
+};
 
-export default SideBar
+export default SideBar;

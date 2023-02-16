@@ -4,18 +4,24 @@ import {
   IconButton,
   TextField,
   InputAdornment,
+  Fab,
+  Tooltip, 
 } from "@mui/material";
 import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import {
+  Camera,
+  File,
+  Image,
   LinkSimpleHorizontal,
   PaperPlaneTilt,
   SmileySticker,
+  Sticker,
+  User,
 } from "phosphor-react";
 import { useTheme } from "@emotion/react";
 
-//-------------------------emoji-pikcer-react----------------------
-
+//-------------------------emoji-pikcer-react--------------
 import EmojiPicker from "emoji-picker-react";
 //---------------------------------------------------------
 
@@ -25,7 +31,48 @@ const StyledInput = styled(TextField)(({ theme }) => ({
     paddingBottom: "12px",
   },
 }));
-const ChatInput = ({ setOpenEmoji }) => {
+
+// -------------------------------------------------------
+//  message sending actions 
+const actions = [
+  {
+    title: "Photo/Video",
+    color: "#4DA5FE",
+    y: 102,
+    icon: <Image size={24} />,
+  },
+  {
+    title: "Stickers",
+    color: "#4DA5FE",
+    y: 172,
+    icon: <Sticker size={24} />,
+  },
+  {
+    title: "Image",
+    color: "#1b8cfe",
+    y: 242,
+    icon: <Camera size={24} />,
+  },
+  {
+    title: "Document",
+    color: "#0172e4",
+    y: 312,
+    icon: <File size={24} />,
+  },
+  {
+    title: "Contact",
+    color: "#0159b2",
+    y: 382,
+    icon: <User size={24} />,
+  },
+];
+// -------------------------------------------------------
+
+
+const ChatInput = ({ setOpenEmoji,  }) => {
+  // state for new message action
+  const [action, setAction] = useState(false);
+  const theme = useTheme();
   return (
     <StyledInput
       fullWidth
@@ -35,18 +82,43 @@ const ChatInput = ({ setOpenEmoji }) => {
       InputProps={{
         disableUnderline: true,
         startAdornment: (
-          <InputAdornment>
-            <IconButton>
-              <LinkSimpleHorizontal />
-            </IconButton>
-          </InputAdornment>
+          <Stack sx={{width:"max-content"}}>
+            {/* actions stack */}
+            <Stack sx={{position:"relative", display:action ? "inline-block": "none" }}>
+              {
+                actions.map((singleAction)=>{
+                  return (
+                    <Fab
+                      sx={{
+                        position: "absolute",
+                        top: -singleAction.y,
+                        backgroundColor: singleAction.color,
+                        color:"#FFF"
+                      }}
+                    >
+                      <Tooltip title={singleAction.title} placement="right" >
+                        <IconButton>{singleAction.icon}</IconButton>
+                      </Tooltip>
+                    </Fab>
+                  );
+                })
+              }
+            </Stack>
+            <InputAdornment>
+              <IconButton onClick={()=>setAction((old)=>!old)}>
+                <LinkSimpleHorizontal />
+              </IconButton>
+            </InputAdornment>
+          </Stack>
         ),
         endAdornment: (
           <InputAdornment>
             <IconButton>
-              <SmileySticker onClick={()=>{
-                setOpenEmoji((old)=>!old)
-              }}/>
+              <SmileySticker
+                onClick={() => {
+                  setOpenEmoji((old) => !old);
+                }}
+              />
             </IconButton>
           </InputAdornment>
         ),
@@ -54,16 +126,16 @@ const ChatInput = ({ setOpenEmoji }) => {
     />
   );
 };
+
+
 const ChatFooter = () => {
   const theme = useTheme();
   const [openEmoji, setOpenEmoji] = useState(false);
   return (
     <Box
+    
       p={2}
       sx={{
-        //     height: 100,
-        // backgroundColor: "#F8FAFF",
-        //     change the background color in future if the current combonation does not look that good in future
         width: "100%",
         backgroundColor:
           theme.palette.mode === "light"
@@ -74,19 +146,22 @@ const ChatFooter = () => {
       }}
     >
       <Stack direction={"row"} alignItems={"center"} spacing={3}>
-        <Stack width={"100%"}>
+        <Stack sx={{
+          width: "100%",
+        }}>
+          {/* emoji picker box */}
           <Box
             sx={{
               display: openEmoji ? "inline" : "none",
               zIndex: 10,
               position: "fixed",
-              bottom: "81px",
-              right: "100px",
+              bottom: "75px",
+              right: "85px",
             }}
           >
             <EmojiPicker theme={theme.palette.mode} />
           </Box>
-          <ChatInput setOpenEmoji={setOpenEmoji} />
+          <ChatInput setOpenEmoji={setOpenEmoji}  />
         </Stack>
         {/* chat input */}
         <Box
@@ -104,7 +179,6 @@ const ChatFooter = () => {
         <Stack
           sx={{
             height: "100%",
-            width: "100%",
           }}
           alignItems={"center"}
           justifyContent={"center"}

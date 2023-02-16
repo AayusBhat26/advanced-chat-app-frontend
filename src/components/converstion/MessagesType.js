@@ -1,6 +1,17 @@
-import { Box, Divider, IconButton, Link, Stack, Typography, useTheme } from "@mui/material";
-import { Download, Image } from "phosphor-react";
-import React from "react";
+import {
+  Box,
+  Divider,
+  IconButton,
+  Link,
+  Menu,
+  MenuItem,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import { DotsThreeVertical, Download, Image } from "phosphor-react";
+import React, { useState } from "react";
+import { Message_options } from "../../data";
 // TODO: create a timeline component
 const Timeline = ({ singleChat }) => {
   const theme = useTheme();
@@ -51,6 +62,9 @@ const TextMessage = ({ singleChat }) => {
           {singleChat.message}
         </Typography>
       </Box>
+      <Box>
+        <MessageOptions />
+      </Box>
     </Stack>
   );
 };
@@ -96,6 +110,9 @@ const MediaMessage = ({ singleChat }) => {
           </Typography>
         </Stack>
       </Box>
+      <Box>
+        <MessageOptions />
+      </Box>
     </Stack>
   );
 };
@@ -140,6 +157,9 @@ const ReplyMessage = ({ singleChat }) => {
             {singleChat.reply}
           </Typography>
         </Stack>
+      </Box>
+      <Box>
+        <MessageOptions />
       </Box>
     </Stack>
   );
@@ -203,6 +223,9 @@ const LinkMessage = ({ singleChat }) => {
           </Stack>
         </Stack>
       </Box>
+      <Box>
+        <MessageOptions />
+      </Box>
     </Stack>
   );
 };
@@ -250,8 +273,68 @@ const DocMessage = ({ singleChat }) => {
           </Typography>
         </Stack>
       </Box>
+      <Box>
+        <MessageOptions />
+      </Box>
     </Stack>
   );
 };
+const MessageOptions= () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  return (
+    <>
+      <DotsThreeVertical
+        size={22}
+        id="basic-button"
+        aria-controls={open ? "basic-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+      />
 
-export { Timeline, TextMessage, MediaMessage, ReplyMessage, LinkMessage, DocMessage };
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+      >
+        <Stack spacing={1} px={1}>
+          {Message_options.map((singleAction) => {
+            return (
+              <MenuItem onClick={handleClick}>
+                <Stack sx={{
+                  width: "100px",
+                }}
+                direction={"row"}
+                alignItems={"center"}
+                justifyContent={"space-between"}
+                > 
+                  <span>{singleAction.title}</span>
+                  {singleAction.icon}
+                </Stack>
+              </MenuItem>
+            );
+          })}
+        </Stack>
+      </Menu>
+    </>
+  );
+};
+export {
+  Timeline,
+  TextMessage,
+  MediaMessage,
+  ReplyMessage,
+  LinkMessage,
+  DocMessage,
+};
