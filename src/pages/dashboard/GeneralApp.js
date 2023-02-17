@@ -20,13 +20,16 @@ const GeneralApp = () => {
         sx={{
           height: "100%",
           width: "calc(100vw - 420px)",
-          backgroundColor: theme.palette.mode==="light" ? "#F8F4FA" : theme.palette.background.default,
+          backgroundColor:
+            theme.palette.mode === "light"
+              ? "#F8F4FA"
+              : theme.palette.background.default,
         }}
       >
-
         <Converstion />
-
       </Box>
+      
+      {/* contact information. */}
     </Stack>
   );
 };

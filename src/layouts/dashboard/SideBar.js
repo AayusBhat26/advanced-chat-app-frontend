@@ -4,7 +4,6 @@ import {
   Divider,
   IconButton,
   Avatar,
-  Switch,
   Menu,
   MenuItem,
 } from "@mui/material";
@@ -156,6 +155,7 @@ const SideBar = () => {
             )}
           </Stack>
         </Stack>
+        
         {/* user avatar  + switch */}
 
         <Stack spacing={4} justifyContent={"center"} alignItems={"center"}>
