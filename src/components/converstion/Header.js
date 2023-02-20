@@ -39,6 +39,7 @@ const Header = () => {
       }}
     >
       <Stack
+      
         justifyContent={"space-between"}
         alignItems={"center"}
         direction={"row"}
@@ -46,6 +47,7 @@ const Header = () => {
           width: "100%",
           height: "100%",
         }}
+        
       >
         <Stack direction={"row"} spacing={2}>
           <Box>
