@@ -7,6 +7,7 @@ import {
   Typography,
   IconButton,
   Divider,
+  Tooltip,
 } from "@mui/material";
 import {
   Phone,
@@ -20,10 +21,13 @@ import {
       ArrowDown
 }from "phosphor-react";
 import StyledBadge from '../StyledBadge/StyledBadge';
-
+import { ToggleSidebar } from '../../redux/slices/app';
+import { useDispatch } from 'react-redux';
+import "./index.css"
 
 const Header = () => {
       const theme = useTheme();
+      const dispatch = useDispatch();
   return (
     <Box
       p={2}
@@ -39,7 +43,6 @@ const Header = () => {
       }}
     >
       <Stack
-      
         justifyContent={"space-between"}
         alignItems={"center"}
         direction={"row"}
@@ -47,7 +50,6 @@ const Header = () => {
           width: "100%",
           height: "100%",
         }}
-        
       >
         <Stack direction={"row"} spacing={2}>
           <Box>
@@ -55,6 +57,12 @@ const Header = () => {
               overlap="circular"
               anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
               variant="dot"
+              onClick={() => {
+                dispatch(ToggleSidebar());
+              }}
+              sx={{
+                cursor:"pointer"
+              }}
             >
               <Avatar
                 src={faker.image.avatar()}
@@ -62,10 +70,12 @@ const Header = () => {
               ></Avatar>
             </StyledBadge>
           </Box>
-          <Stack spacing={0.2}>
+          <Tooltip title="User Information">
+            <Stack spacing={0.2}>
             <Typography variant="subtitle2">{faker.name.fullName()}</Typography>
             <Typography variant="caption">Online</Typography>
           </Stack>
+          </Tooltip>
         </Stack>
         {/* icons stack */}
         <Stack direction={"row"} alignItems="center" spacing={3}>

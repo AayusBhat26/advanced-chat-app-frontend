@@ -5,3 +5,6 @@
       border-radius: 10px;
 
 }
+.test{
+      transition: all 1ms ease-in-out;
+}
