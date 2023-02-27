@@ -7,12 +7,13 @@ import Contact from "../../components/contact/Contact";
 import { useSelector } from "react-redux";
 // import Zoom from "@mui/material/Zoom";
 import "./index.css";
+import SharedMessages from "../../components/SharedMessages";
 const GeneralApp = () => {
   const theme = useTheme();
   // todo: use useSelector method to select the data from store.
   // const app = useSelector((store)=>store.app);
   // console.log(app);
-  const {sidebar} = useSelector((store)=>store.app);
+  const { sidebar } = useSelector((store) => store.app);
   return (
     <Stack
       direction={"row"}
@@ -38,7 +39,25 @@ const GeneralApp = () => {
       >
         <Converstion />
       </Box>
-      {sidebar.open && <Contact />}
+      {/* {sidebar.open && <Contact/>} */}
+      {/* {
+        sidebar.open && (()=>{
+          switch (sidebar.type) {
+            case "contact":
+              <Contact />;
+              break
+            case "SHARED":
+               <SharedMessages />;
+               break;
+            default:
+              break;
+          }
+        })
+      } */}
+      {
+        sidebar.type === "CONTACT" ? <Contact /> : (sidebar.type==="SHARED" ? <SharedMessages/> : (sidebar.type==="STARRED" ? 
+        "" :<></>))
+      }
     </Stack>
   );
 };

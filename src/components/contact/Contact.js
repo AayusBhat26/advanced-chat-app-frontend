@@ -10,10 +10,12 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { ArrowRight, Divide, Phone, Star, VideoCamera } from "phosphor-react";
+import { ArrowRight, Bell, Divide, Flag, Phone, Prohibit, Star, Trash, VideoCamera } from "phosphor-react";
 import { useDispatch } from "react-redux";
-import { ToggleSidebar } from "../../redux/slices/app";
+import { ToggleSidebar, UpdateSidebarType } from "../../redux/slices/app";
 import { faker } from "@faker-js/faker";
+// import MaterialUISwitch from "../MaterialUISwitch/MaterialUISwitch";
+import AntSwitch from "../AntSwitch";
 
 const Contact = () => {
   const theme = useTheme();
@@ -33,8 +35,10 @@ const Contact = () => {
       >
         <Box
           sx={{
-            boxShadow:
-              "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+            // boxShadow:
+            //   "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+            boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.35) ",
+            borderRadius: 1.6,
             width: "100%",
             backgroundColor:
               theme.palette.mode === "light"
@@ -52,6 +56,8 @@ const Contact = () => {
             sx={{
               height: "100%",
               padding: "16px",
+              marginBottom: "10px",
+              marginLeft: "10px",
             }}
           >
             <Typography>User Information</Typography>
@@ -151,7 +157,14 @@ const Contact = () => {
               Media, links and docs
             </Typography>
             {/* media count and right arrow for complete view of media, links and docs */}
-            <Button endIcon={<ArrowRight />}>2629</Button>
+            <Button
+              onClick={() => {
+                dispatch(UpdateSidebarType("SHARED"));
+              }}
+              endIcon={<ArrowRight />}
+            >
+              2629
+            </Button>
           </Stack>
           {/* image for image,doc and links */}
           <Stack direction={"row"} spacing={"16px"} alignItems={"center"}>
@@ -162,16 +175,63 @@ const Contact = () => {
             ))}
           </Stack>
           <Divider />
-          <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
+          <Stack
+            direction={"row"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
             <Stack direction={"row"} alignItems={"center"} spacing={2}>
-              <Star />
+              <Star size={"24px"} />
               <Typography variant="subtitle2">Starred Messages</Typography>
             </Stack>
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                dispatch(UpdateSidebarType("STARRED"));
+              }}
+            >
               <ArrowRight />
             </IconButton>
           </Stack>
-          <Divider/>
+          <Divider />
+          <Stack
+            direction={"row"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            <Stack direction={"row"} alignItems={"center"} spacing={2}>
+              <Bell size={"24px"} />
+              <Typography variant="subtitle2">Mute User</Typography>
+            </Stack>
+            <IconButton>
+              <AntSwitch />
+            </IconButton>
+          </Stack>
+          <Divider />
+          {/* growps in common */}
+          <Typography>n-Groups In Common</Typography>
+          <Stack direction={"row"} alignItems="center" spacing={2}>
+            <Avatar src={faker.image.people()} alt={faker.name.firstName()} />
+            <Stack spacing={0.5}>
+              {/* common group name */}
+              <Typography variant="subtitle2" fontSize={"14px"}>
+                Common Group Name
+              </Typography>
+              {/* people in group. */}
+              <Typography variant="caption" fontSize={"12px"}>
+                Mem1, mem2, mem3, you
+              </Typography>
+            </Stack>
+          </Stack>
+          <Divider />
+          {/* block user and delete chats with  user. */}
+          <Stack alignItems={"center"} spacing={"20px"} direction={"row"}>
+            <Button fullWidth variant="outlined" startIcon={<Prohibit />}>
+              <Typography fontSize={"16px"}>Block</Typography>
+            </Button>
+            <Button fullWidth variant="outlined" startIcon={<Trash />}>
+              <Typography fontSize={"16px"}>Delete</Typography>
+            </Button>
+          </Stack>
         </Stack>
       </Stack>
     </Box>
