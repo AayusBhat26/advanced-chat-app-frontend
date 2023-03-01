@@ -8,6 +8,8 @@ import {  UpdateSidebarType } from "../redux/slices/app";
 import { ArrowLeft, } from "phosphor-react";
 import { useDispatch } from "react-redux";
 import { faker } from "@faker-js/faker";
+import { Shared_Documents, Shared_Links } from "../data";
+import { DocMessage, LinkMessage } from "./converstion/MessagesType";
 const SharedMessages = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -67,7 +69,12 @@ const SharedMessages = () => {
           </Stack>
         </Box>
         <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-          <Tabs sx={{pt:"4px"}} value={tabState} onChange={handleTabStateChange} centered>
+          <Tabs
+            sx={{ pt: "4px" }}
+            value={tabState}
+            onChange={handleTabStateChange}
+            centered
+          >
             <Tab label="Media" />
             <Tab label="Links" />
             <Tab label="Documents" />
@@ -81,55 +88,39 @@ const SharedMessages = () => {
             flexGrow: 1,
             overflowY: "scroll",
           }}
-          p={3}
-          spacing={3}
+          p={1}
+          spacing={tabState === 1 ? 1 :3}
         >
-
-
           {
-            // (()=>{
-              // switch (tabState) {
-              //   case 0:
-              //     // media
-              //     return <Grid container spacing={2}>
-              //       {
-              //         [0,1,2,3,4,5,6].map((ele)=>{
-              //           return <Grid item xs={4}>
-              //             <img src={faker.image.avatar()} alt={faker.name.fullName()}/>
-              //           </Grid>
-              //         })
-              //       }
-              //     </Grid>;
-              //   case 1:
-              //     // links
-              //     break;
-              //   case 2:
-              //     // documents
-              //     break;
-              // }
-            // })
-
-            
-              // if(tabState == 0){
-              //   console.log(tabState);
-              // }
-              tabState == 0 ? (<Grid container spacing={2}>
-                {
-                  [0,1,2,3,4,5,6].map((ele)=>{
-                    return <Grid item xs={4}>
-                      <img src={faker.image.avatar()} alt={faker.name.fullName()}/>
+       
+            tabState == 0 ? (
+              <Grid container spacing={2}>
+                {[0, 1, 2, 3, 4, 5, 6].map((ele) => {
+                  return (
+                    <Grid item xs={4}>
+                      <img
+                        src={faker.image.avatar()}
+                        alt={faker.name.fullName()}
+                      />
                     </Grid>
-                  })
-                }
-              </Grid>) :(tabState==1 ? <Stack direction={"column"} spacing={1}>
-                {
-                  [0,1,2,3,4,5,6].map((ele)=>{
-                    return <Box  xs={1}>
-                      <Typography>{faker.name.fullName()}</Typography>
-                    </Box>
-                  }) 
-                }
-              </Stack> : "hi")
+                  );
+                })}
+              </Grid>
+            ) : tabState == 1 ? (
+              <Stack direction={"column"} spacing={1}>
+                {Shared_Links.map((ele) => {
+                  return <LinkMessage singleChat={ele} />;
+                })}
+              </Stack>
+            ) : tabState == 2 ? (
+              <Stack direction={"column"} spacing={1}>
+                {Shared_Documents.map((ele) => {
+                  return <DocMessage singleChat={ele} />;
+                })}
+              </Stack>
+            ) : (
+              ""
+            )
           }
         </Stack>
       </Stack>

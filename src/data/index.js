@@ -222,7 +222,101 @@ const Message_options = [
     title: "Delete Message",
   },
 ];
-// link messages.
+// shared link messages.
+const Shared_Links = [
+  {
+    type: "msg",
+    subtype: "link",
+    preview: faker.image.cats(),
+    message: "Yep, I can also do that",
+    incoming: true,
+    outgoing: false,
+  },
+  {
+    type: "msg",
+    subtype: "link",
+    preview: faker.image.cats(),
+    message: "Yep, I can also do that",
+    incoming: true,
+    outgoing: false,
+  },
+  {
+    type: "msg",
+    subtype: "link",
+    preview: faker.image.cats(),
+    message: "Yep, I can also do that",
+    incoming: true,
+    outgoing: false,
+  },
+  {
+    type: "msg",
+    subtype: "link",
+    preview: faker.image.cats(),
+    message: "Yep, I can also do that",
+    incoming: true,
+    outgoing: false,
+  },
+  {
+    type: "msg",
+    subtype: "link",
+    preview: faker.image.cats(),
+    message: "Yep, I can also do that",
+    incoming: true,
+    outgoing: false,
+  },
+];
+// shared documents messages/
+const Shared_Documents = [
+  {
+    type: "doc",
+    subtype: "reply",
+    reply: "This is a reply",
+    message: "Yep, I can also do that",
+    incoming: false,
+    outgoing: true,
+  },
+  {
+    type: "doc",
+    subtype: "reply",
+    reply: "This is a reply",
+    message: "Yep, I can also do that",
+    incoming: false,
+    outgoing: true,
+  },
+  {
+    type: "doc",
+    subtype: "reply",
+    reply: "This is a reply",
+    message: "Yep, I can also do that",
+    incoming: false,
+    outgoing: true,
+  },
+  {
+    type: "doc",
+    subtype: "reply",
+    reply: "This is a reply",
+    message: "Yep, I can also do that",
+    incoming: false,
+    outgoing: true,
+  },
+  {
+    type: "doc",
+    subtype: "reply",
+    reply: "This is a reply",
+    message: "Yep, I can also do that",
+    incoming: false,
+    outgoing: true,
+  },
+  {
+    type: "doc",
+    subtype: "reply",
+    reply: "This is a reply",
+    message: "Yep, I can also do that",
+    incoming: false,
+    outgoing: true,
+  },
+];
+
 export {
   Profile_Menu,
   Nav_Setting,
@@ -230,4 +324,6 @@ export {
   ChatList,
   Chat_History,
   Message_options,
+  Shared_Documents,
+  Shared_Links
 };
