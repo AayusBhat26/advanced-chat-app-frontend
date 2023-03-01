@@ -55,8 +55,10 @@ const GeneralApp = () => {
         })
       } */}
       {
-        sidebar.type === "CONTACT" ? <Contact /> : (sidebar.type==="SHARED" ? <SharedMessages/> : (sidebar.type==="STARRED" ? 
-        "" :<></>))
+      //  <SharedMessages></SharedMessages>
+      // //   sidebar.type === "CONTACT" ? <Contact /> : (sidebar.type==="SHARED" ? <SharedMessages/> : (sidebar.type==="STARRED" ? 
+      //   // "" :<></>))
+      sidebar.type==="CONTACT" ? <Contact/> :(sidebar.type==="SHARED" ? <SharedMessages/> : (sidebar.type==="STARRED" ? "starred messages" :"nothing"))
       }
     </Stack>
   );
