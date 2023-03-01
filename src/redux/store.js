@@ -15,7 +15,7 @@ import { useDispatch as useAppDispatch, useSelector as useAppSelector } from "re
 // } from "redux-persist";
 import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/es/persistStore";
-import storage from "redux-persist/lib/storage"
+
 import {
       rootPersistConfig, rootReducer
 } from "./rootReducer";
