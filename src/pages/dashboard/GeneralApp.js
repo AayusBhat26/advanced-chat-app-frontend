@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 // import Zoom from "@mui/material/Zoom";
 import "./index.css";
 import SharedMessages from "../../components/SharedMessages";
+import StarredMessages from "../../components/StarredMessages";
 const GeneralApp = () => {
   const theme = useTheme();
   // todo: use useSelector method to select the data from store.
@@ -58,7 +59,7 @@ const GeneralApp = () => {
       //  <SharedMessages></SharedMessages>
       // //   sidebar.type === "CONTACT" ? <Contact /> : (sidebar.type==="SHARED" ? <SharedMessages/> : (sidebar.type==="STARRED" ? 
       //   // "" :<></>))
-      sidebar.type==="CONTACT" ? <Contact/> :(sidebar.type==="SHARED" ? <SharedMessages/> : (sidebar.type==="STARRED" ? "starred messages" :"nothing"))
+      sidebar.type==="CONTACT" ? <Contact/> :(sidebar.type==="SHARED" ? <SharedMessages/> : (sidebar.type==="STARRED" ? <StarredMessages /> :"nothing"))
       }
     </Stack>
   );

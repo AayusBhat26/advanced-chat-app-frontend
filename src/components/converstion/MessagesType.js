@@ -38,7 +38,7 @@ const Timeline = ({ singleChat }) => {
   );
 };
 // todo: text message component
-const TextMessage = ({ singleChat }) => {
+const TextMessage = ({ singleChat, menu }) => {
   const theme = useTheme();
   return (
     <Stack
@@ -52,7 +52,7 @@ const TextMessage = ({ singleChat }) => {
           backgroundColor: singleChat.incoming
             ? theme.palette.background.default
             : theme.palette.primary.main,
-          width: "max-content",
+        width: "max-content",
         }}
       >
         <Typography
@@ -62,14 +62,12 @@ const TextMessage = ({ singleChat }) => {
           {singleChat.message}
         </Typography>
       </Box>
-      <Box>
-        <MessageOptions />
-      </Box>
+      <Box>{menu && <MessageOptions />}</Box>
     </Stack>
   );
 };
 // todo: image message component,.
-const MediaMessage = ({ singleChat }) => {
+const MediaMessage = ({ singleChat, menu }) => {
   const theme = useTheme();
   return (
     <Stack
@@ -110,15 +108,13 @@ const MediaMessage = ({ singleChat }) => {
           </Typography>
         </Stack>
       </Box>
-      <Box>
-        <MessageOptions />
-      </Box>
+      <Box>{menu && <MessageOptions />}</Box>
     </Stack>
   );
 };
 
 // todo: reply message
-const ReplyMessage = ({ singleChat }) => {
+const ReplyMessage = ({ singleChat, menu }) => {
   const theme = useTheme();
   return (
     <Stack
@@ -158,9 +154,7 @@ const ReplyMessage = ({ singleChat }) => {
           </Typography>
         </Stack>
       </Box>
-      <Box>
-        <MessageOptions />
-      </Box>
+      <Box>{menu && <MessageOptions />}</Box>
     </Stack>
   );
 };

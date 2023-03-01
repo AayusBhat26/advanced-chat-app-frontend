@@ -3,13 +3,19 @@ import {
   Avatar,
   Box,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Divider,
   IconButton,
+  Slide,
   Stack,
   Tooltip,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { ArrowRight, Bell, Divide, Flag, Phone, Prohibit, Star, Trash, VideoCamera } from "phosphor-react";
 import { useDispatch } from "react-redux";
 import { ToggleSidebar, UpdateSidebarType } from "../../redux/slices/app";
@@ -17,9 +23,71 @@ import { faker } from "@faker-js/faker";
 // import MaterialUISwitch from "../MaterialUISwitch/MaterialUISwitch";
 import AntSwitch from "../AntSwitch";
 
+// transition for dialogs for smooth transtitoi.
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+// dialgo component
+const BlockDialog = ({open, handleClose})=>{
+  return (
+    <Dialog
+      fullWidth
+      open={open}
+      TransitionComponent={Transition}
+      keepMounted
+      onClose={handleClose}
+      aria-describedby="alert-dialog-slide-description"
+    >
+      <DialogTitle>{"Block This Contact"}</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-slide-description">
+          Are you sure ?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleClose}>Block</Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
+
+// deleteDialog
+const DeleteDialog = ({ open, handleClose }) => {
+  return (
+    <Dialog fullWidth
+      open={open}
+      TransitionComponent={Transition}
+      keepMounted
+      onClose={handleClose}
+      aria-describedby="alert-dialog-slide-description"
+    >
+      <DialogTitle>{"Delete Chat History"}</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-slide-description">
+          Are you sure ?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleClose}>Delete</Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
 const Contact = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const [openBlock, setOpenBlock] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+  const handleCloseBlock = ()=>{
+    setOpenBlock(false);
+  
+  }
+  const handleCloseDelete = ()=>{
+    setOpenDelete(false);
+  }
   return (
     <Box
       className="test"
@@ -225,15 +293,37 @@ const Contact = () => {
           <Divider />
           {/* block user and delete chats with  user. */}
           <Stack alignItems={"center"} spacing={"20px"} direction={"row"}>
-            <Button fullWidth variant="outlined" startIcon={<Prohibit />}>
+            <Button
+              fullWidth
+              variant="outlined"
+              startIcon={<Prohibit />}
+              onClick={() => {
+                setOpenBlock(true);
+              }}
+            >
               <Typography fontSize={"16px"}>Block</Typography>
             </Button>
-            <Button fullWidth variant="outlined" startIcon={<Trash />}>
+            <Button
+              fullWidth
+              variant="outlined"
+              startIcon={<Trash />}
+              onClick={() => {
+                setOpenDelete(true);
+              }}
+            >
               <Typography fontSize={"16px"}>Delete</Typography>
             </Button>
           </Stack>
         </Stack>
       </Stack>
+      {/* dialogs */}
+
+      {openBlock && (
+        <BlockDialog open={openBlock} handleClose={handleCloseBlock} />
+      )}
+      {openDelete && (
+        <DeleteDialog open={openDelete} handleClose={handleCloseDelete} />
+      )}
     </Box>
   );
 };

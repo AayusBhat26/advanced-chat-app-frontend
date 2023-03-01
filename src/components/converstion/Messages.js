@@ -3,7 +3,7 @@ import { Chat_History } from "../../data/index";
 import React from "react";
 import { DocMessage, LinkMessage, MediaMessage, ReplyMessage, TextMessage, Timeline } from "./MessagesType";
 
-const Messages = () => {
+const Messages = ({menu}) => {
   return (
     <Box p={2.5}>
       <Stack spacing={3}>
@@ -17,19 +17,19 @@ const Messages = () => {
               switch (singleChat.subtype) {
                 case "img":
                   // image
-                  return <MediaMessage singleChat={singleChat}/>
+                  return <MediaMessage singleChat={singleChat} menu={menu}/>
                 case "doc":
                   // document
-                  return <DocMessage singleChat={singleChat}/>;
+                  return <DocMessage singleChat={singleChat} menu={menu}/>;
                  
                 case "link":
                   // link
-                  return <LinkMessage singleChat={singleChat} />;
+                  return <LinkMessage singleChat={singleChat}  menu={menu}/>;
                 case "reply":
                   // reply
-                  return <ReplyMessage singleChat = {singleChat}/>
+                  return <ReplyMessage singleChat = {singleChat} menu={menu}/>
                 default:
-                  return <TextMessage singleChat={singleChat} />;
+                  return <TextMessage singleChat={singleChat}  menu={menu}/>;
               }
              
             default:
