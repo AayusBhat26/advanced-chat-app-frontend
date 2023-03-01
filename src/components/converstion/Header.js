@@ -21,7 +21,7 @@ import {
       ArrowDown
 }from "phosphor-react";
 import StyledBadge from '../StyledBadge/StyledBadge';
-import { ToggleSidebar } from '../../redux/slices/app';
+import { ToggleSidebar, UpdateSidebarType } from '../../redux/slices/app';
 import { useDispatch } from 'react-redux';
 import "./index.css"
 
@@ -59,6 +59,7 @@ const Header = () => {
               variant="dot"
               onClick={() => {
                 dispatch(ToggleSidebar());
+                dispatch(UpdateSidebarType("CONTACT"))
               }}
               sx={{
                 cursor:"pointer"
