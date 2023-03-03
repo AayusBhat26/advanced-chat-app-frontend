@@ -4,12 +4,22 @@ import { useTheme } from "@mui/material/styles";
 import { BellRinging, CaretLeft, Image, Info, Key, Keyboard, Lock, Notebook, PaintRoller } from "phosphor-react";
 import { faker } from "@faker-js/faker";
 
-import React from "react";
+import React, { useState } from "react";
+import Shortcuts from "../../sections/settings/Shortcuts";
 
 // todo: create a right and left panel for settings page.
 
 const Settings = () => {
   const theme = useTheme();
+  // keyboard shortcuts closing andopening state.
+  const [keyboardShortcutState, setKeyboardShortcutState] = useState(false);
+  // handler function for keyboard shortcuts
+  const handleOpenKeyboardShortcuts= ()=>{
+    setKeyboardShortcutState(true);
+  }
+   const handleCloseKeyboardShortcuts = () => {
+    setKeyboardShortcutState(false);
+   };
   // creating a list for setting items
   const handleOpenTheme = () => {};
   const handleOpenShortcuts = () => {};
@@ -54,7 +64,7 @@ const Settings = () => {
       key: 6,
       icon: <Keyboard />,
       title: "Keyboard Shortcuts",
-      onclick: handleOpenShortcuts,
+      onclick: handleOpenKeyboardShortcuts,
     },
     {
       key: 7,
@@ -72,7 +82,7 @@ const Settings = () => {
         }}
       >
         {/* left panel  */}
-        <Stack direction={"column-reverse"}>
+        <Stack direction={"column"}>
           <Box
             sx={{
               overflowY: "scroll",
@@ -87,19 +97,19 @@ const Settings = () => {
               boxShadow: " 0px 0px 2px rgba(0,0,0,0.25)",
             }}
           >
-            <Stack p={4} spacing={5}>
+            {/* title */}
+            <Stack direction={"row"} alignItems={"center"} spacing={3} marginTop={"10px"} marginBottom={10}>
+              <IconButton>
+                <CaretLeft size={24} color="#4B4B4B" />
+              </IconButton>
+              <Typography variant="h5">Settings</Typography>
+            </Stack>
+            <Stack p={4} spacing={5} direction={"column-reverse"}>
               {/* title */}
               {/* profile picture */}
               {/* setting options  */}
               {/* options: notification, security, theme, wallpaper, keyboard shortcuts, help */}
 
-              {/* title */}
-              <Stack direction={"row"} alignItems={"center"} spacing={3}>
-                <IconButton>
-                  <CaretLeft size={24} color="#4B4B4B" />
-                </IconButton>
-                <Typography variant="h5">Settings</Typography>
-              </Stack>
               {/* title stack end  */}
 
               {/* profile picture stack */}
@@ -123,31 +133,41 @@ const Settings = () => {
                   </Typography>
                 </Stack>
               </Stack>
-              <Stack spacing={4} >
-                {
-                  settingList.map(({key, icon, title, onclick})=>{
-                    return <Stack spacing={2} onclick={onclick} sx={{
-                      cursor:"pointer"
-                    }}>
+              <Stack spacing={4}>
+                {settingList.map(({ key, icon, title, onclick }) => {
+                  return (
+                    <Stack
+                      spacing={2}
+                      onClick={onclick}
+                      sx={{
+                        cursor: "pointer",
+                      }}
+                    >
                       {/* internal stack => single */}
-                      <Stack direction={"row"} spacing={2} alignItems={"center"}>
-                        {
-                          icon
-                        }
+                      <Stack
+                        direction={"row"}
+                        spacing={2}
+                        alignItems={"center"}
+                      >
+                        {icon}
                         <Typography variant="body2">{title}</Typography>
                       </Stack>
-                      {
-                        key!==7 && <Divider/>
-                      }
+                      {key !== 7 && <Divider />}
                     </Stack>
-                  })
-                }
+                  );
+                })}
               </Stack>
             </Stack>
           </Box>
         </Stack>
         {/* right panel */}
       </Stack>
+      {keyboardShortcutState && (
+        <Shortcuts
+          open={keyboardShortcutState}
+          handleClose={handleCloseKeyboardShortcuts}
+        />
+      )}
     </>
   );
 };
