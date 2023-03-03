@@ -40,7 +40,7 @@ const SideBar = () => {
       }}
     >
       <Stack
-        direction={"column"}
+        direction={"column-reverse"}
         alignItems={"center"}
         justifyContent={"space-between"}
         sx={{

@@ -93,7 +93,7 @@ const SharedMessages = () => {
         >
           {
        
-            tabState == 0 ? (
+            tabState === 0 ? (
               <Grid container spacing={2}>
                 {[0, 1, 2, 3, 4, 5, 6].map((ele) => {
                   return (
@@ -106,13 +106,13 @@ const SharedMessages = () => {
                   );
                 })}
               </Grid>
-            ) : tabState == 1 ? (
+            ) : tabState === 1 ? (
               <Stack direction={"column"} spacing={1}>
                 {Shared_Links.map((ele) => {
                   return <LinkMessage singleChat={ele} />;
                 })}
               </Stack>
-            ) : tabState == 2 ? (
+            ) : tabState === 2 ? (
               <Stack direction={"column"} spacing={1}>
                 {Shared_Documents.map((ele) => {
                   return <DocMessage singleChat={ele} />;
