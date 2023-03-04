@@ -3,6 +3,7 @@ import { Navigate, useRoutes } from "react-router-dom";
 
 // layouts
 import DashboardLayout from "../layouts/dashboard";
+import AuthLayout from "../layouts/main";
 
 // config
 import { DEFAULT_PATH } from "../config";
@@ -26,6 +27,40 @@ export default function Router() {
     >
       {useRoutes([
         {
+          path: "/auth",
+          element: <AuthLayout />,
+          children: [
+            {
+              element: <LoginPage />,
+              path: "login",
+            },
+          ],
+          // element: <DashboardLayout />,
+          // children: [
+          //   { element: <Navigate to={DEFAULT_PATH} replace />, index: true },
+          //   { path: "app", element: <GeneralApp /> },
+          //   {
+          //     path: "/settings",
+          //     element: <Settings />,
+          //   },
+          //   {
+          //     path: "/pomodoro",
+          //     element: <Pomodoro />,
+          //   },
+          //   {
+          //     path: "/calendar",
+          //     element: <Calendar />,
+          //   },
+          //   {
+          //     path: "/todo",
+          //     element: <Todo />,
+          //   },
+          //   { path: "404", element: <Page404 /> },
+          //   { path: "*", element: <Navigate to="/404" replace /> },
+          // ],
+        },
+        ,
+        {
           path: "/",
           element: <DashboardLayout />,
           children: [
@@ -35,7 +70,18 @@ export default function Router() {
               path: "/settings",
               element: <Settings />,
             },
-
+            {
+              path: "/pomodoro",
+              element: <Pomodoro />,
+            },
+            {
+              path: "/calendar",
+              element: <Calendar />,
+            },
+            {
+              path: "/todo",
+              element: <Todo />,
+            },
             { path: "404", element: <Page404 /> },
             { path: "*", element: <Navigate to="/404" replace /> },
           ],
@@ -51,5 +97,18 @@ const GeneralApp = Loadable(
 );
 const Settings = Loadable(
   lazy(() => import("../pages/dashboard/Settings"))
+);
+const Pomodoro = Loadable(
+  lazy(()=>import("../components/pomodoroComponent/src/index"))
+)
+const Calendar = Loadable(
+  lazy(() => import("../components/calendarComponent/src/index"))
+);
+const Todo = Loadable(
+  lazy(() => import("../components/todoComponent/src/index"))
+);
+//auth
+const LoginPage = Loadable(
+  lazy(() => import("../pages/auth/Login"))
 );
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));
