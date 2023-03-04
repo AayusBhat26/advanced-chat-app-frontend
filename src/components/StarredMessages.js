@@ -134,4 +134,4 @@ const StarredMessages = () => {
   );
 };
 
-export default StarredMessages;
+export { StarredMessages };

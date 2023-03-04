@@ -128,4 +128,4 @@ const SharedMessages = () => {
   );
 };
 
-export default SharedMessages;
+export { SharedMessages };

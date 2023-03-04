@@ -6,15 +6,30 @@ import { useTheme } from "@emotion/react";
 import Contact from "../../components/contact/Contact";
 import { useSelector } from "react-redux";
 // import Zoom from "@mui/material/Zoom";
-import "./index.css";
-import SharedMessages from "../../components/SharedMessages";
-import StarredMessages from "../../components/StarredMessages";
+import { StarredMessages } from "../../components/StarredMessages";
+import { SharedMessages } from "../../components/SharedMessages";
+// import "./index.css";
+
 const GeneralApp = () => {
   const theme = useTheme();
   // todo: use useSelector method to select the data from store.
-  // const app = useSelector((store)=>store.app);
-  // console.log(app);
   const { sidebar } = useSelector((store) => store.app);
+
+  const returnSwitch=(param)=>{
+    switch (param) {
+      case "CONTACT":
+        return <Contact />;
+      case "SHARED":
+        return <SharedMessages />;
+      case "STARRED":
+        return <StarredMessages />;
+
+      case undefined:
+        return <></>
+      default:
+        return ""
+    }
+  }
   return (
     <Stack
       direction={"row"}
@@ -40,27 +55,13 @@ const GeneralApp = () => {
       >
         <Converstion />
       </Box>
-      {/* {sidebar.open && <Contact/>} */}
-      {/* {
-        sidebar.open && (()=>{
-          switch (sidebar.type) {
-            case "contact":
-              <Contact />;
-              break
-            case "SHARED":
-               <SharedMessages />;
-               break;
-            default:
-              break;
-          }
-        })
-      } */}
-      {
-      //  <SharedMessages></SharedMessages>
-      // //   sidebar.type === "CONTACT" ? <Contact /> : (sidebar.type==="SHARED" ? <SharedMessages/> : (sidebar.type==="STARRED" ? 
-      //   // "" :<></>))
-      sidebar.type==="CONTACT" ? <Contact/> :(sidebar.type==="SHARED" ? <SharedMessages/> : (sidebar.type==="STARRED" ? <StarredMessages /> :"nothing"))
-      }
+      {sidebar.type === "CONTACT" ? (
+        <Contact />
+      ) : sidebar.type === "SHARED" ? (
+        <SharedMessages />
+      ) : (
+        sidebar.type === "STARRED" ? <StarredMessages/> : null
+      )}
     </Stack>
   );
 };
