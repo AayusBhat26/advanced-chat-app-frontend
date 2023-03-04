@@ -8,8 +8,8 @@ const AuthLayout = () => {
   return (
     <>
       {/* auth layout */}
-      <Container sx={{ mt: 5 }} maxWidth="sm">
-        <Stack spacing={5}>
+      <Container sx={{ mt: 2 }}  maxWidth="sm">
+        <Stack spacing={2}>
           {/* logo stack */}
           <Stack
             sx={{
@@ -31,7 +31,7 @@ const AuthLayout = () => {
               sx={{
                 marginTop: 2,
                 fontWeight: 900,
-                textAlign:"center"
+                textAlign: "center",
               }}
             >
               Welcome to PROD
@@ -40,7 +40,7 @@ const AuthLayout = () => {
               sx={{
                 marginTop: 2,
                 fontWeight: 800,
-                textAlign:"center"
+                textAlign: "center",
               }}
             >
               A Complete solution for your productivity !!!
