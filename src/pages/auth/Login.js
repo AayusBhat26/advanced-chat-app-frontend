@@ -13,13 +13,13 @@ const Login = () => {
       }}
       direction={"row"}
       alignItems={"center"}
-      justifyContent={"space-between"}
+      justifyContent={"space-evenly"}
       // border={"1px solid black"}
     >
       <Stack
         spacing={2}
         sx={{
-          mt: 8,
+          mt: 10,
           position: "relative",
         }}
       >
