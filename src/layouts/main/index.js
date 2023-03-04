@@ -8,21 +8,21 @@ const AuthLayout = () => {
   return (
     <>
       {/* auth layout */}
-      <Container sx={{ mt: 2 }}  maxWidth="sm">
-        <Stack spacing={2}>
+      <Container sx={{ mt: 2,  }}  maxWidth="xl" >
+        <Stack spacing={2} >
           {/* logo stack */}
           <Stack
             sx={{
               width: "100%",
             }}
             direction={"column"}
-            // alignItems={"center"}
+            alignItems={"center"}
           >
             <Typography
               variant="h1"
-              fontWeight={1000}
+              fontWeight={700}
               sx={{
-                letterSpacing: "100px",
+                letterSpacing: "10px",
               }}
             >
               PROD
@@ -30,7 +30,7 @@ const AuthLayout = () => {
             <Typography
               sx={{
                 marginTop: 2,
-                fontWeight: 900,
+                
                 textAlign: "center",
               }}
             >

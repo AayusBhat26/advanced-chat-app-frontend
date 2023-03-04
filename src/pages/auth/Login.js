@@ -1,21 +1,23 @@
-import { Box, Divider, Link, Stack, Typography } from '@mui/material'
-import React from 'react';
-import{
-  Link as RouterLink
-} from "react-router-dom";
-import AuthOmethods from '../../sections/auth/AuthOmethods';
+import { Box, Divider, Link, Stack, Typography } from "@mui/material";
+import React from "react";
+import { Link as RouterLink } from "react-router-dom";
+import AuthOmethods from "../../sections/auth/AuthOmethods";
+import LoginForm from "../../sections/auth/LoginForm";
 
 const Login = () => {
   return (
     <Stack
-      width={"100%"}
+      sx={{
+        width: "100%",
+        marginTop: "20px",
+      }}
       direction={"row"}
-      // alignItems={"center"}
+      alignItems={"center"}
       justifyContent={"space-between"}
+      // border={"1px solid black"}
     >
       <Stack
         spacing={2}
-        // direction={""}
         sx={{
           mt: 8,
           position: "relative",
@@ -30,23 +32,11 @@ const Login = () => {
         </Stack>
         {/* Login form  */}
         {/* other methods */}
-        <AuthOmethods />
+        <LoginForm />
       </Stack>
-
-      {/* <Stack
-        direction={"row"}
-        marginTop={6}
-        spacing={2}
-        justifyContent={"center"}
-        alignItems={"center"}
-      > */}
-      {/* other login options */}
-      {/* <Typography variant="h6">w1</Typography>
-        <Typography variant="h6">w1</Typography>
-        <Typography variant="h6">w1</Typography>
-      </Stack> */}
+      <AuthOmethods />
     </Stack>
   );
-}
+};
 
-export default Login
+export default Login;
