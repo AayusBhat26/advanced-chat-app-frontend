@@ -6,6 +6,7 @@ import {
   Avatar,
   Menu,
   MenuItem,
+  Tooltip,
 } from "@mui/material";
 import Logo from "../../assets/Images/logo.png";
 import { Stack } from "@mui/system";
@@ -15,6 +16,7 @@ import { faker } from "@faker-js/faker";
 import { useTheme } from "@mui/material/styles";
 import useSettings from "../../hooks/useSettings";
 import MaterialUISwitch from "../../components/MaterialUISwitch/MaterialUISwitch";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   const theme = useTheme();
@@ -125,7 +127,7 @@ const SideBar = () => {
                 width: "50px",
               }}
             />
-            {selected === 3 ? (
+            {selected === 5 ? (
               <Box
                 p={1}
                 sx={{
@@ -133,9 +135,13 @@ const SideBar = () => {
                   borderRadius: 1.5,
                 }}
               >
-                <IconButton>
-                  <Gear />
-                </IconButton>
+                <Tooltip title="Settings">
+                  <Link to="/app/settings">
+                    <IconButton>
+                      <Gear />
+                    </IconButton>
+                  </Link>
+                </Tooltip>
               </Box>
             ) : (
               <IconButton
@@ -155,7 +161,7 @@ const SideBar = () => {
             )}
           </Stack>
         </Stack>
-        
+
         {/* user avatar  + switch */}
 
         <Stack spacing={4} justifyContent={"center"} alignItems={"center"}>

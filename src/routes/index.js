@@ -35,29 +35,7 @@ export default function Router() {
               path: "login",
             },
           ],
-          // element: <DashboardLayout />,
-          // children: [
-          //   { element: <Navigate to={DEFAULT_PATH} replace />, index: true },
-          //   { path: "app", element: <GeneralApp /> },
-          //   {
-          //     path: "/settings",
-          //     element: <Settings />,
-          //   },
-          //   {
-          //     path: "/pomodoro",
-          //     element: <Pomodoro />,
-          //   },
-          //   {
-          //     path: "/calendar",
-          //     element: <Calendar />,
-          //   },
-          //   {
-          //     path: "/todo",
-          //     element: <Todo />,
-          //   },
-          //   { path: "404", element: <Page404 /> },
-          //   { path: "*", element: <Navigate to="/404" replace /> },
-          // ],
+          
         },
         ,
         {
@@ -67,19 +45,19 @@ export default function Router() {
             { element: <Navigate to={DEFAULT_PATH} replace />, index: true },
             { path: "app", element: <GeneralApp /> },
             {
-              path: "/settings",
+              path: "/app/settings",
               element: <Settings />,
             },
             {
-              path: "/pomodoro",
+              path: "/app/pomodoro",
               element: <Pomodoro />,
             },
             {
-              path: "/calendar",
+              path: "/app/calendar",
               element: <Calendar />,
             },
             {
-              path: "/todo",
+              path: "/app/todo",
               element: <Todo />,
             },
             { path: "404", element: <Page404 /> },

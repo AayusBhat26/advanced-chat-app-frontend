@@ -4,9 +4,11 @@ import {
   ChatText,
   Gear,
   GearSix,
+  ListChecks,
   Phone,
   PhoneCall,
   SignOut,
+  Timer,
   User,
   UserList,
   Users,
@@ -40,11 +42,19 @@ const Nav_Buttons = [
     index: 2,
     icon: <PhoneCall />,
   },
+  {
+    index:3, 
+    icon:<ListChecks/>
+  },
+  {
+    index: 4,
+    icon: <Timer />,
+  },
 ];
 
 const Nav_Setting = [
   {
-    index: 3,
+    index: 5,
     icon: <GearSix />,
   },
 ];
