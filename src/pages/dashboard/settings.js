@@ -1,5 +1,4 @@
 import { Avatar, Box, Divider, IconButton, Stack, Typography } from "@mui/material";
-// import {useTheme} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { BellRinging, CaretLeft, Image, Info, Key, Keyboard, Lock, Notebook, PaintRoller } from "phosphor-react";
 import { faker } from "@faker-js/faker";

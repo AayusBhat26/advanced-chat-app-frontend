@@ -146,7 +146,7 @@ const SideBar = () => {
             ) : (
               <IconButton
                 onClick={() => {
-                  setSelected(3);
+                  setSelected(5);
                 }}
                 sx={{
                   width: "max-content",

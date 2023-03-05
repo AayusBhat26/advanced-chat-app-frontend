@@ -23,7 +23,7 @@ const LoginForm = () => {
     email: Yup.string()
       .required("Email is Required")
       .email("Enter A valid email address"),
-    password: Yup.string().required("Password is Required").length(6),
+    password: Yup.string().required("Password is Required").length(6, 32),
   });
 
   const defaultValues = {
