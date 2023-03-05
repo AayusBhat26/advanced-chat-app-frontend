@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import FormProvider from "../../components/hook-form/FormProvider";
-import {
-  Link as RouterLink 
-} from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -16,23 +14,21 @@ import {
 } from "@mui/material";
 import { TextFieldAdv } from "../../components/hook-form";
 import { Eye, EyeClosed } from "phosphor-react";
-const LoginForm = () => {
+const NewPasswordForm = () => {
   const [showPasswordState, setShowPasswordState] = useState(false);
   // validation rules.
-  const LoginSchema = Yup.object().shape({
-    email: Yup.string()
-      .required("Email is Required")
-      .email("Enter A valid email address"),
-    password: Yup.string().required("Password is Required").length(6),
+  const NewPasswordSchema = Yup.object().shape({
+    newPassword: Yup.string().min(6, "Password must be at least 6 characters").required("Password is Required").length(6, 32),
+    confirmPassword: Yup.string().required("Confirm Password is Required").length(6).oneOf([Yup.ref("newPassword"), null], 'Password must match'),
   });
 
   const defaultValues = {
-    email: "demo@example.com",
-    password: "demo1234",
+    newPassword:"",
+    confirmPassword:'',
   };
 
   const methods = useForm({
-    resolver: yupResolver(LoginSchema),
+    resolver: yupResolver(NewPasswordSchema),
     defaultValues,
   });
 
@@ -61,10 +57,9 @@ const LoginForm = () => {
         {!!errors.afterSubmit && (
           <Alert severity="error">{errors.message} </Alert>
         )}
-        <TextFieldAdv name="email" label="Email Address" />
         <TextFieldAdv
-          name="password"
-          label="Password"
+          name="newPassword"
+          label="New Password"
           type={showPasswordState ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -80,17 +75,24 @@ const LoginForm = () => {
             ),
           }}
         />
-      </Stack>
-      <Stack
-        alignItems={"flex-end"}
-        sx={{
-          my: 2,
-        }}
-      >
-        <Link component={RouterLink} variant="body2" color="inherit" underline="always" to="/auth/reset-password">
-          Forget Password ?
-        </Link>
-      </Stack>
+        <TextFieldAdv
+          name="confirmPassword"
+          label="Confirm Password"
+          type={showPasswordState ? "text" : "password"}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment>
+                <IconButton
+                  onClick={() => {
+                    setShowPasswordState(!showPasswordState);
+                  }}
+                >
+                  {showPasswordState ? <Eye /> : <EyeClosed />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
       <Button
         fullWidth
         color="inherit"
@@ -108,10 +110,11 @@ const LoginForm = () => {
           },
         }}
       >
-        Login
+        Save.
       </Button>
+      </Stack>
     </FormProvider>
   );
 };
 
-export default LoginForm;
+export default NewPasswordForm;
