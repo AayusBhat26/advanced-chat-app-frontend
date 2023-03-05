@@ -34,8 +34,11 @@ export default function Router() {
               element: <LoginPage />,
               path: "login",
             },
+            {
+              element: <RegisterPage />,
+              path: "register",
+            },
           ],
-          
         },
         ,
         {
@@ -89,4 +92,5 @@ const Todo = Loadable(
 const LoginPage = Loadable(
   lazy(() => import("../pages/auth/Login"))
 );
+const RegisterPage = Loadable(lazy(() => import("../pages/auth/Register")));
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));

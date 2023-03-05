@@ -19,7 +19,7 @@ const Login = () => {
       <Stack
         spacing={2}
         sx={{
-          mt: 10,
+          mt: 7,
           position: "relative",
         }}
       >
