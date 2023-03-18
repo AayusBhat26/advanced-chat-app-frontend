@@ -15,21 +15,21 @@ const GeneralApp = () => {
   // todo: use useSelector method to select the data from store.
   const { sidebar } = useSelector((store) => store.app);
 
-  const returnSwitch=(param)=>{
-    switch (param) {
-      case "CONTACT":
-        return <Contact />;
-      case "SHARED":
-        return <SharedMessages />;
-      case "STARRED":
-        return <StarredMessages />;
+  // const returnSwitch=(param)=>{
+  //   switch (param) {
+  //     case "CONTACT":
+  //       return <Contact />;
+  //     case "SHARED":
+  //       return <SharedMessages />;
+  //     case "STARRED":
+  //       return <StarredMessages />;
 
-      case undefined:
-        return <></>
-      default:
-        return ""
-    }
-  }
+  //     case undefined:
+  //       return <></>
+  //     default:
+  //       return ""
+  //   }
+  // }
   return (
     <Stack
       direction={"row"}
@@ -55,13 +55,16 @@ const GeneralApp = () => {
       >
         <Converstion />
       </Box>
-      {sidebar.type === "CONTACT" ? (
+      {/* {sidebar.type === "CONTACT" ? (
         <Contact />
       ) : sidebar.type === "SHARED" ? (
         <SharedMessages />
-      ) : (
-        sidebar.type === "STARRED" ? <StarredMessages/> : null
-      )}
+      ) : sidebar.type === "STARRED" ? (
+        <StarredMessages />
+      ) : null} */}
+      {
+        sidebar.open && sidebar.type==="CONTACT"? (<Contact/>) :(sidebar.type==="SHARED" ? <SharedMessages/> :(sidebar.type === "STARRED" ? <StarredMessages /> : null))
+      }
     </Stack>
   );
 };

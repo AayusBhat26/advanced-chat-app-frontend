@@ -59,6 +59,11 @@ export default function Router() {
               path: "/app/settings",
               element: <Settings />,
             },
+
+            {
+              path:"/app/group", 
+              element:<GroupPage/>
+            },
             {
               path: "/app/pomodoro",
               element: <Pomodoro />,
@@ -96,6 +101,9 @@ const Calendar = Loadable(
 const Todo = Loadable(
   lazy(() => import("../components/todoComponent/src/index"))
 );
+// group 
+const GroupPage = Loadable(lazy(() => import("../pages/dashboard/Group")));
+
 
 //auth
 const LoginPage = Loadable(

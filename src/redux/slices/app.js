@@ -7,9 +7,10 @@ const initialState = {
   // since we have to show multiple components, therefore setting a intital state to display the contact information only.
   sidebar: {
     open: false,
-    type: "CONTACT",
+    // type: "CONTACT",
     // other possible values could be:
     // starred messges, shared documents, link and media.
+    type:""
   },
 };
 

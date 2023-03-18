@@ -42,8 +42,8 @@ const StarredMessages = () => {
       >
         <Box
           sx={{
-            // boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.35) ",
-            // borderRadius: 1.6,
+            boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.15) ",
+            borderRadius: 1.6,
             width: "100%",
             backgroundColor:
               theme.palette.mode === "light"
