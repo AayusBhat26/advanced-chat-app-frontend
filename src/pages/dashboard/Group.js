@@ -5,7 +5,8 @@ import { Search, SearchIconWrapper, StyledInputBase } from '../../components/Sea
 import { MagnifyingGlass, Plus } from 'phosphor-react';
 import { ChatList } from '../../data';
 import ChatComponent from '../../components/ChatComponent';
-
+// invisible scroll
+import "./index.css"
 const Group = () => {
   const theme = useTheme();
   return (

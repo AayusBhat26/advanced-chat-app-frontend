@@ -5,7 +5,7 @@ import { faker } from "@faker-js/faker";
 
 import React, { useState } from "react";
 import Shortcuts from "../../sections/settings/Shortcuts";
-
+import "./index.css"
 // todo: create a right and left panel for settings page.
 
 const Settings = () => {

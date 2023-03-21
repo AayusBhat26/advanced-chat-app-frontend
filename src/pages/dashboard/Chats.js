@@ -15,7 +15,8 @@ import {
 import {ChatList} from '../../data/index'
 import React from "react";
 
-import { faker } from "@faker-js/faker";
+// import { faker } from "@faker-js/faker";
+import "./index.css"
 import { Search, SearchIconWrapper, StyledInputBase } from "../../components/Search";
 import ChatComponent from "../../components/ChatComponent";
 
