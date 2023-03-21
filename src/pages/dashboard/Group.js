@@ -1,7 +1,13 @@
-import { Box, Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography, Link, IconButton, Divider,  } from '@mui/material'
+import {useTheme} from "@mui/material/styles"
 import React from 'react'
+import { Search, SearchIconWrapper, StyledInputBase } from '../../components/Search';
+import { MagnifyingGlass, Plus } from 'phosphor-react';
+import { ChatList } from '../../data';
+import ChatComponent from '../../components/ChatComponent';
 
 const Group = () => {
+  const theme = useTheme();
   return (
     <>
       <Stack
@@ -30,15 +36,70 @@ const Group = () => {
             }}
           >
             <Stack direction={"column"}>
-              <Typography variant='h5'>Groups</Typography>
+              <Typography variant="h5">Groups</Typography>
             </Stack>
-            <Stack sx={{width:"100%"}}>
-                  
+            <Stack sx={{ width: "100%" }}>
+              <Search>
+                <SearchIconWrapper>
+                  <MagnifyingGlass color="#709CE6" />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search"
+                  inputProps={{ "aria-label": "Search" }}
+                />
+              </Search>
+            </Stack>
+            <Stack
+              direction={"row"}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+            >
+              <Typography
+                variant="subtitle2"
+                component={Link}
+                sx={{ cursor: "pointer" }}
+              >
+                Create New Group
+              </Typography>
+              <IconButton>
+                <Plus
+                  style={{
+                    color: theme.palette.primary.main,
+                  }}
+                />
+              </IconButton>
+            </Stack>
+            <Divider />
+            <Stack spacing={3} sx={{ flexGrow: 1, overflowY: "scroll", height: "100%" }}>
+              {/* todo: customize scrollbar through css. */}
+              <Stack spacing={1}>
+                <Typography variant="subtitle2" sx={{ color: "#676667" }}>
+                  Pinned Groups
+                </Typography>
+                {/* chat list  */}
+                {ChatList.filter((element) => element.pinned).map(
+                  (singleChat) => {
+                    return <ChatComponent {...singleChat} />;
+                  }
+                )}
+              </Stack>
+              <Stack spacing={2}>
+                <Typography variant="subtitle2" sx={{ color: "#676667" }}>
+                  All Groups
+                </Typography>
+                {/* chat list  */}
+                {ChatList.filter((element) => !element.pinned).map(
+                  (singleChat) => {
+                    return <ChatComponent {...singleChat} />;
+                  }
+                )}
+              </Stack>
             </Stack>
           </Stack>
         </Box>
 
         {/* right */}
+        {/* TODO=> conversation components */}
       </Stack>
     </>
   );
