@@ -59,10 +59,13 @@ export default function Router() {
               path: "/app/settings",
               element: <Settings />,
             },
-
             {
-              path:"/app/group", 
-              element:<GroupPage/>
+              path: "/app/call",
+              element: <CallPage />,
+            },
+            {
+              path: "/app/group",
+              element: <GroupPage />,
             },
             {
               path: "/app/pomodoro",
@@ -92,6 +95,7 @@ const GeneralApp = Loadable(
 const Settings = Loadable(
   lazy(() => import("../pages/dashboard/Settings"))
 );
+const CallPage = Loadable(lazy(()=>import("../pages/dashboard/Call")))
 const Pomodoro = Loadable(
   lazy(()=>import("../components/pomodoroComponent/src/index"))
 )

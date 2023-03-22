@@ -1,14 +1,30 @@
-import { Box, Stack, Typography, Link, IconButton, Divider,  } from '@mui/material'
-import {useTheme} from "@mui/material/styles"
-import React from 'react'
-import { Search, SearchIconWrapper, StyledInputBase } from '../../components/Search';
-import { MagnifyingGlass, Plus } from 'phosphor-react';
-import { ChatList } from '../../data';
-import ChatComponent from '../../components/ChatComponent';
+import {
+  Box,
+  Stack,
+  Typography,
+  Link,
+  IconButton,
+  Divider,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import React, { useState } from "react";
+import {
+  Search,
+  SearchIconWrapper,
+  StyledInputBase,
+} from "../../components/Search";
+import { MagnifyingGlass, Plus } from "phosphor-react";
+import { ChatList } from "../../data";
+import ChatComponent from "../../components/ChatComponent";
 // invisible scroll
-import "./index.css"
+import "./index.css";
+import CreateGroup from "../../sections/main/CreateGroup";
 const Group = () => {
   const theme = useTheme();
+  const [openDialog, setOpenDialog] = useState(false);
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
   return (
     <>
       <Stack
@@ -62,7 +78,9 @@ const Group = () => {
               >
                 Create New Group
               </Typography>
-              <IconButton>
+              <IconButton onClick={()=>{
+                setOpenDialog(true)
+              }}>
                 <Plus
                   style={{
                     color: theme.palette.primary.main,
@@ -71,7 +89,10 @@ const Group = () => {
               </IconButton>
             </Stack>
             <Divider />
-            <Stack spacing={3} sx={{ flexGrow: 1, overflowY: "scroll", height: "100%" }}>
+            <Stack
+              spacing={3}
+              sx={{ flexGrow: 1, overflowY: "scroll", height: "100%" }}
+            >
               {/* todo: customize scrollbar through css. */}
               <Stack spacing={1}>
                 <Typography variant="subtitle2" sx={{ color: "#676667" }}>
@@ -102,8 +123,11 @@ const Group = () => {
         {/* right */}
         {/* TODO=> conversation components */}
       </Stack>
+      {openDialog && (
+        <CreateGroup open={openDialog} handleClose={handleCloseDialog} />
+      )}
     </>
   );
-}
+};
 
-export default Group
+export default Group;
