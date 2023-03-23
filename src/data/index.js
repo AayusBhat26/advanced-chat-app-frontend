@@ -43,8 +43,8 @@ const Nav_Buttons = [
     icon: <PhoneCall />,
   },
   {
-    index:3, 
-    icon:<ListChecks/>
+    index: 3,
+    icon: <ListChecks />,
   },
   {
     index: 4,
@@ -334,7 +334,79 @@ const Shared_Documents = [
     outgoing: true,
   },
 ];
+const Call_History = [
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    incoming: true,
+    missed: false,
+    // level:0,
+  },
+  {
+    id: 1,
+    incoming: true,
+    missed: false,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
 
+    // level:0,
+  },
+  {
+    id: 2,
+    incoming: true,
+    missed: false,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+
+    // level:0,
+  },
+  {
+    id: 3,
+    incoming: true,
+    missed: false,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+
+    // level:0,
+  },
+  {
+    id: 4,
+    incoming: true,
+    missed: false,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+
+    // level:0,
+  },
+  {
+    id: 5,
+    incoming: true,
+    missed: false,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+
+    // level:0,
+  },
+  {
+    id: 6,
+    incoming: true,
+    missed: false,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+
+    // level:0,
+  },
+  {
+    id: 7,
+    incoming: true,
+    missed: false,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+
+    // level:0,
+  },
+];
 export {
   Profile_Menu,
   Nav_Setting,
@@ -343,5 +415,5 @@ export {
   Chat_History,
   Message_options,
   Shared_Documents,
-  Shared_Links
+  Shared_Links,
 };
