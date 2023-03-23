@@ -407,6 +407,57 @@ const Call_History = [
     // level:0,
   },
 ];
+// Members_List
+const Members_List = [
+  {
+    id: 0,
+
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online:true,
+    // level:0,
+  },
+  {
+    id: 1,
+
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online:true,
+    // level:0,
+  },
+  {
+    id: 2,
+
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online:true,
+    // level:0,
+  },
+  {
+    id: 3,
+
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online:false,
+    // level:0,
+  },
+  {
+    id: 4,
+
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online:false,
+    // level:0,
+  },
+  {
+    id: 5,
+
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online:false,
+    // level:0,
+  },
+];
 export {
   Profile_Menu,
   Nav_Setting,
@@ -416,4 +467,6 @@ export {
   Message_options,
   Shared_Documents,
   Shared_Links,
+  Call_History, 
+  Members_List
 };

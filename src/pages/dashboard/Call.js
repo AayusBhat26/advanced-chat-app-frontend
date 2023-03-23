@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Stack,
@@ -7,7 +8,6 @@ import {
   Divider,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import React, { useState } from "react";
 import {
   Search,
   SearchIconWrapper,
@@ -18,6 +18,8 @@ import { MagnifyingGlass, Plus } from "phosphor-react";
 // invisible scroll
 import "./index.css";
 import { CallLogElement } from "../../components/CallElement";
+import { Call_History } from "../../data";
+import StartCall from "../../sections/main/StartCall";
 
 
 
@@ -100,26 +102,20 @@ const Call = () => {
               {/* todo: customize scrollbar through css. */}
               <Stack spacing={1}>
                 <Typography variant="subtitle2" sx={{ color: "#676667" }}>
-                  New 
+                  New
                 </Typography>
-               {/* previous call history list */}
-               <CallLogElement online={true} incoming={true} missed={true}/>
+                {/* previous call history list */}
+                {Call_History.map((singleCallHistory) => {
+                  return <CallLogElement {...singleCallHistory} />;
+                })}
+                {/* missed={singleCall.missed} incoming={singleCall.incoming} */}
               </Stack>
-              <Stack spacing={2}>
-                {/* <Typography variant="subtitle2" sx={{ color: "#676667" }}>
-                  All Groups
-                </Typography> */}
-                {/* chat list  */}
-                {/* {ChatList.filter((element) => !element.pinned).map(
-                  (singleChat) => {
-                    return <ChatComponent {...singleChat} />;
-                  }
-                )} */}
-              </Stack>
+              <Stack spacing={3}>{/* <Typography>Pinned</Typography> */}</Stack>
             </Stack>
           </Stack>
         </Box>
       </Stack>
+      {openDialog && <StartCall open={openDialog} handleClose={handleCloseDialog}/>}
     </>
   );
 };
