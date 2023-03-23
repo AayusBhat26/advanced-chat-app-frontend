@@ -15,10 +15,10 @@ import {
 import { TextFieldAdv } from "../../components/hook-form";
 import { Eye, EyeClosed } from "phosphor-react";
 const ProfileForm = () => {
-  // validation rules.
+  // validation rules
   const ProfileSchema = Yup.object().shape({
     name: Yup.string().required("Name is Required"),
-    about: Yup.string().required("About is Required").length(6, 10),
+    about: Yup.string().required("About is Required").length(4, 6),
     avatarUrl: Yup.string().required("Avatar is Required").nullable(false)
   });
 
