@@ -10,7 +10,8 @@ const initialState = {
     // type: "CONTACT",
     // other possible values could be:
     // starred messges, shared documents, link and media.
-    type:""
+    type:"", 
+    level:5,
   },
 };
 
@@ -27,6 +28,9 @@ const slice = createSlice({
     updateSidebarType(state, action) {
       state.sidebar.type = action.payload.type;
     },
+    updateLevel(state, action){
+      state.sidebar.level = action.payload.level
+    }
   },
 });
 export default slice.reducer;
@@ -48,4 +52,15 @@ export function UpdateSidebarType(type) {
       })
     );
   };
+}
+
+// update level 
+export function UpdateLevel(level){
+  return async()=>{
+    dispatch(
+      slice.actions.updateLevel({
+        level
+      })
+    )
+  }
 }

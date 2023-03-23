@@ -6,13 +6,13 @@ import ChatFooter from "../converstion/ChatFooter";
 import Messages from "./Messages";
 import "./index.css"
 
-const Converstion = () => {
+const Converstion = ({level}) => {
   return (
     <Stack height={"100%"} maxHeight={"100vh"} width={"auto"}
     className="hideScrollbar"
     >
       {/* chat-header */}
-      <Header />
+      <Header level={level}/>
       {/* <>messages</> */}
       <Box
         width={"100%"}

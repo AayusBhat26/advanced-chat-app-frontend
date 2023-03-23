@@ -21,7 +21,7 @@ import { Search, SearchIconWrapper, StyledInputBase } from "../../components/Sea
 import ChatComponent from "../../components/ChatComponent";
 
 
-const Chats = () => {
+const Chats = ({level}) => {
   const theme = useTheme();
   return (
     // <Stack direction={"column-reverse"}>
@@ -111,7 +111,7 @@ const Chats = () => {
             <Divider />
 
             {ChatList.filter((element) => element.pinned).map((singleChat) => {
-              return <ChatComponent {...singleChat} />;
+              return <ChatComponent  {...singleChat} level={level}/>;
             })}
             {/* todo: create a pinned messages section. */}
           </Stack>
@@ -134,6 +134,9 @@ const Chats = () => {
             })}
           </Stack>
         </Stack>
+        {/* <Box>
+          <Typography>Lvl 0</Typography>
+        </Box> */}
       </Stack>
     </Box>
   );

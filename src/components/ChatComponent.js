@@ -31,7 +31,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 
-const ChatComponent = ({ id, name, img, msg, time, unread, online }) => {
+const ChatComponent = ({ id, name, img, msg, time, unread, online, level }) => {
   const theme = useTheme();
   return (
     <Box
@@ -63,7 +63,11 @@ const ChatComponent = ({ id, name, img, msg, time, unread, online }) => {
           )}
 
           <Stack spacing={0.4}>
-            <Typography variant="subtitle2">{name}</Typography>
+            {/* <Typography variant="subtitle2">{name}</Typography> */}
+            <Stack width={"100%"} direction={"row"} spacing={1} justifyContent={"flex-start"} alignItems={"center"}>
+              <Typography variant="subtitle2" fontSize={"16px"}>{name}</Typography>
+              <Typography fontSize={"14px"}>Lvl {level}</Typography>
+            </Stack>
             <Typography variant="caption">{msg}</Typography>
           </Stack>
         </Stack>

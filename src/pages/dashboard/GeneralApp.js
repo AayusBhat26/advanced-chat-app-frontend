@@ -14,7 +14,7 @@ const GeneralApp = () => {
   const theme = useTheme();
   // todo: use useSelector method to select the data from store.
   const { sidebar } = useSelector((store) => store.app);
-
+  // const {level} = useSelector((store)=>store.app)
   // const returnSwitch=(param)=>{
   //   switch (param) {
   //     case "CONTACT":
@@ -38,7 +38,7 @@ const GeneralApp = () => {
       }}
     >
       {/* single chat component */}
-      <Chats />
+      <Chats level = {""} />
       {/*converstion */}
       {/* <Fade></Fade> */}
       <Box
@@ -53,7 +53,7 @@ const GeneralApp = () => {
               : theme.palette.background.default,
         }}
       >
-        <Converstion />
+        <Converstion level ={10}/>
       </Box>
       {/* {sidebar.type === "CONTACT" ? (
         <Contact />

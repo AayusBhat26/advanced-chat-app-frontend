@@ -5,10 +5,15 @@ import { faker } from "@faker-js/faker";
 
 import React, { useState } from "react";
 import Shortcuts from "../../sections/settings/Shortcuts";
-import "./index.css"
+import "./index.css";
+
+import { useSelector } from "react-redux";
+
 // todo: create a right and left panel for settings page.
 
 const Settings = () => {
+  // level from store.
+  const {user} = useSelector((store)=>store.app)
   const theme = useTheme();
   // keyboard shortcuts closing andopening state.
   const [keyboardShortcutState, setKeyboardShortcutState] = useState(false);
@@ -124,7 +129,7 @@ const Settings = () => {
                 <Stack spacing={0.5}>
                   {/* name */}
                   <Typography variant="article">
-                    {faker.name.fullName()}
+                    {faker.name.fullName()}, hi{user}
                   </Typography>
                   {/* bio */}
                   <Typography variant="body2">

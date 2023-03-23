@@ -69,6 +69,7 @@ const ChatList = [
     unread: 0,
     pinned: true,
     online: true,
+    // level:0,
   },
   {
     id: 1,
@@ -79,6 +80,7 @@ const ChatList = [
     unread: 2,
     pinned: true,
     online: false,
+    // level:0,
   },
   {
     id: 2,
@@ -89,6 +91,7 @@ const ChatList = [
     unread: 3,
     pinned: false,
     online: true,
+    // level:0,
   },
   {
     id: 3,
@@ -99,6 +102,7 @@ const ChatList = [
     unread: 0,
     pinned: false,
     online: true,
+    // level:0,
   },
   {
     id: 4,
@@ -109,6 +113,7 @@ const ChatList = [
     unread: 0,
     pinned: false,
     online: false,
+    // level:0,
   },
   {
     id: 5,
@@ -119,6 +124,7 @@ const ChatList = [
     unread: 0,
     pinned: false,
     online: false,
+    // level:0,
   },
   {
     id: 6,
@@ -129,6 +135,7 @@ const ChatList = [
     unread: 0,
     pinned: false,
     online: false,
+    // level:0,
   },
   {
     id: 7,
@@ -139,6 +146,7 @@ const ChatList = [
     unread: 0,
     pinned: false,
     online: false,
+    // level:0,
   },
 ];
 
