@@ -64,6 +64,10 @@ export default function Router() {
               element: <CallPage />,
             },
             {
+              path: "/app/profile", 
+              element:<ProfilePage />
+            },
+            {
               path: "/app/group",
               element: <GroupPage />,
             },
@@ -88,35 +92,47 @@ export default function Router() {
     </Box>
   );
 }
-
+// general app
 const GeneralApp = Loadable(
   lazy(() => import("../pages/dashboard/GeneralApp"))
 );
+// setting page
 const Settings = Loadable(
   lazy(() => import("../pages/dashboard/Settings"))
 );
+// call page
 const CallPage = Loadable(lazy(()=>import("../pages/dashboard/Call")))
+// pomodoro page
 const Pomodoro = Loadable(
   lazy(()=>import("../components/pomodoroComponent/src/index"))
 )
+// calendar page
 const Calendar = Loadable(
   lazy(() => import("../components/calendarComponent/src/index"))
 );
+// todo page
 const Todo = Loadable(
   lazy(() => import("../components/todoComponent/src/index"))
 );
-// group 
+// group page
 const GroupPage = Loadable(lazy(() => import("../pages/dashboard/Group")));
 
 
-//auth
+// login page
 const LoginPage = Loadable(
   lazy(() => import("../pages/auth/Login"))
 );
+// register page
 const RegisterPage = Loadable(lazy(() => import("../pages/auth/Register")));
+// reset password page
 const ResetPasswordPage = Loadable(lazy(() => import("../pages/auth/ResetPassword")));
-
+// new password page
 const NewPasswordPage = Loadable(
   lazy(() => import("../pages/auth/NewPassword"))
 );
+// profile page
+const ProfilePage=Loadable(lazy(()=>import("../pages/dashboard/Profile.js")))
+
+
+
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));
