@@ -1,5 +1,7 @@
 import React from "react";
-import { Box, Stack } from "@mui/material";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
+import { CaretLeft } from "phosphor-react";
+import ProfileForm from "../../sections/settings/ProfileForm";
 
 const Profile = () => {
   return (
@@ -22,9 +24,22 @@ const Profile = () => {
             boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
           }}
         >
-            <Stack p={4} spacing={5}>
-                  
+          <Stack p={4} spacing={5}>
+            {/* header */}
+            <Stack
+              direction={"row"}
+              alignItems={"center"} // => y axis
+              //   justifyContent={"center"} => x axis
+              spacing={3}
+            >
+              <IconButton>
+                <CaretLeft size={24} color="#4B4B4D" />
+              </IconButton>
+              <Typography variant="h4">Profile</Typography>
             </Stack>
+            {/* profile form  */}
+            <ProfileForm/>
+          </Stack>
         </Box>
       </Stack>
     </>

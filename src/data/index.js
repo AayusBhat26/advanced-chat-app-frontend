@@ -50,14 +50,18 @@ const Nav_Buttons = [
     index: 4,
     icon: <Timer />,
   },
-];
-
-const Nav_Setting = [
   {
     index: 5,
     icon: <GearSix />,
   },
 ];
+
+// const Nav_Setting = [
+//   {
+//     index: 5,
+//     icon: <GearSix />,
+//   },
+// ];
 
 const ChatList = [
   {
@@ -460,7 +464,7 @@ const Members_List = [
 ];
 export {
   Profile_Menu,
-  Nav_Setting,
+  // Nav_Setting,
   Nav_Buttons,
   ChatList,
   Chat_History,

@@ -1,10 +1,13 @@
 import { Container, Stack, Typography } from "@mui/material";
 // import {  } from "phosphor-react";
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-
+const isAuth = true;
 const AuthLayout = () => {
+  if(isAuth){
+    return <Navigate to="/app"/>
+  }
   return (
     <>
       {/* auth layout */}
