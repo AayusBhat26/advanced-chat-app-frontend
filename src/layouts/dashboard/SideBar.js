@@ -1,22 +1,25 @@
 import React, { useState } from "react";
 import {
   Box,
-  Divider,
+  // Divider,
   IconButton,
   Avatar,
   Menu,
   MenuItem,
-  Tooltip,
+  // Tooltip,
 } from "@mui/material";
 import Logo from "../../assets/Images/logo.png";
 import { Stack } from "@mui/system";
 import { Nav_Buttons, Profile_Menu } from "../../data";
-import { Gear } from "phosphor-react";
+// import { Gear } from "phosphor-react";
 import { faker } from "@faker-js/faker";
 import { useTheme } from "@mui/material/styles";
 import useSettings from "../../hooks/useSettings";
 import MaterialUISwitch from "../../components/MaterialUISwitch/MaterialUISwitch";
-import { Link, useNavigate } from "react-router-dom";
+import { 
+  // Link
+  useNavigate } from "react-router-dom";
+
 // path for navigation buttons
 
 const getPath = (index) => {
@@ -74,6 +77,8 @@ const SideBar = () => {
         height: "100vh",
         width: 100,
         boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
+        zIndex:"10", 
+        borderRadius:"30px"
       }}
     >
       <Stack
@@ -162,11 +167,6 @@ const SideBar = () => {
                 </IconButton>
               )
             )}
-            {/* <Divider
-              sx={{
-                width: "50px",
-              }}
-            /> */}
            
           </Stack>
         </Stack>
@@ -209,8 +209,9 @@ const SideBar = () => {
             <Stack spacing={1} px={1}>
               {Profile_Menu.map((singleAction, index) => {
                 return (
-                  <MenuItem onClick={()=>{
+                  <MenuItem  key={index}  onClick={()=>{
                     handleClick()
+
                   }}>
                     {/* {singleAction.title} */}
                     <Stack 

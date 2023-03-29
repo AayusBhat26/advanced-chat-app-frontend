@@ -462,6 +462,41 @@ const Members_List = [
     // level:0,
   },
 ];
+const Components_Desc = [
+  {
+    title: "Messages",
+    link: "/app",
+    image: "../../../public/images/image-1.jpg",
+    id: 0,
+  },
+  {
+    title: "Voice and Video Call",
+    link: "/app/call",
+    image: "../../../public/images/image-2.jpg",
+
+    id: 1,
+  },
+  {
+    title: "Pomodoro",
+    link: "/app/call",
+
+    image: "",
+    id:2
+  },
+  {
+    title: "To Do List",
+    link: "/app/todo",
+    image: "",
+    id:3
+  },
+  {
+    title: "Pomodoro",
+    link: "/app/pomodoro",
+    image: "",
+    id:4
+  },
+];
+
 export {
   Profile_Menu,
   // Nav_Setting,
@@ -472,5 +507,6 @@ export {
   Shared_Documents,
   Shared_Links,
   Call_History, 
-  Members_List
+  Members_List, 
+  Components_Desc
 };

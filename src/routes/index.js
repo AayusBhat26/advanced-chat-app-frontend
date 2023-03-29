@@ -6,7 +6,7 @@ import DashboardLayout from "../layouts/dashboard";
 import AuthLayout from "../layouts/main";
 
 // config
-import { DEFAULT_PATH } from "../config";
+// import { DEFAULT_PATH } from "../config";
 import LoadingScreen from "../components/LoadingScreen";
 import { Box } from "@mui/material";
 
@@ -48,12 +48,15 @@ export default function Router() {
             },
           ],
         },
-        ,
         {
           path: "/",
           element: <DashboardLayout />,
           children: [
-            { element: <Navigate to={DEFAULT_PATH} replace />, index: true },
+            // { element: <Navigate to={DEFAULT_PATH}  />, index: true },
+            {
+              path: "/",
+              element: <ComponentDesc />,
+            },
             { path: "app", element: <GeneralApp /> },
             {
               path: "/app/settings",
@@ -64,8 +67,8 @@ export default function Router() {
               element: <CallPage />,
             },
             {
-              path: "/app/profile", 
-              element:<ProfilePage />
+              path: "/app/profile",
+              element: <ProfilePage />,
             },
             {
               path: "/app/group",
@@ -96,6 +99,10 @@ export default function Router() {
 const GeneralApp = Loadable(
   lazy(() => import("../pages/dashboard/GeneralApp"))
 );
+// desc 
+const ComponentDesc=Loadable(
+  lazy(()=>import("../components/AppDesc/index"))
+)
 // setting page
 const Settings = Loadable(
   lazy(() => import("../pages/dashboard/Settings"))

@@ -1,6 +1,8 @@
 import { faker } from "@faker-js/faker";
 import { Avatar, Badge, Box, Stack, Typography } from "@mui/material";
-import { useTheme,styled } from "@mui/material/styles";
+import { useTheme,
+  // styled 
+} from "@mui/material/styles";
 import StyledBadge from "./Styledbadge";
 
 const ChatComponent = ({ id, name, img, msg, time, unread, online, level }) => {

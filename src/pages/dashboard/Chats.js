@@ -34,7 +34,8 @@ const Chats = ({level}) => {
           theme.palette.mode === "light"
             ? "#F8FAFF"
             : theme.palette.background.paper,
-        boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
+        boxShadow: "0px 0px 20px rgba(0,0,0,0.25)",
+        borderRadius:"10px"
       }}
     >
       {/* <Stack direction={"column-reverse"}> */}

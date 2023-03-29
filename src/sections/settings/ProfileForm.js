@@ -1,25 +1,23 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, 
+  // useState
+ } from "react";
 import FormProvider from "../../components/hook-form/FormProvider";
-import { Link as RouterLink } from "react-router-dom";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Alert,
   Button,
-  IconButton,
-  InputAdornment,
-  Link,
   Stack,
 } from "@mui/material";
 import { TextFieldAdv } from "../../components/hook-form";
-import { Eye, EyeClosed } from "phosphor-react";
+// import { Eye, EyeClosed } from "phosphor-react";
 const ProfileForm = () => {
   // validation rules
   const ProfileSchema = Yup.object().shape({
     name: Yup.string().required("Name is Required"),
     about: Yup.string().required("About is Required").length(4, 6),
-    avatarUrl: Yup.string().required("Avatar is Required").nullable(false)
+    avatarUrl: Yup.string().required("Avatar is Required").nullable(false),
   });
 
   const defaultValues = {
@@ -34,26 +32,35 @@ const ProfileForm = () => {
 
   const {
     reset,
-    watch,
+    // watch,
     setError,
     setValue,
-    control,
+    // control,
     handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: {
+      errors,
+      //isSubmitting,
+      //  isSubmitSuccessful
+    },
   } = methods;
-//   with tht help pf watch function we can have all the values from form.
-  const values = watch();
-  const handleDrop = useCallback((acceptedFiles)=>{
+  //   with tht help pf watch function we can have all the values from form.
+  // const values = watch();
+  //eslint-disable-next-line
+
+  const handleDrop = useCallback(
+    (acceptedFiles) => {
       const file = acceptedFiles[0];
       const newFile = Object.assign(file, {
-            preview:URL.createObjectURL(file)
-      })
-      if(file){
-            setValue("avatarUrl", newFile, {
-                  shouldValidate:true
-            })
+        preview: URL.createObjectURL(file),
+      });
+      if (file) {
+        setValue("avatarUrl", newFile, {
+          shouldValidate: true,
+        });
       }
-  }, [setValue])
+    },
+    [setValue]
+  );
   const onSubmit = async (data) => {
     try {
       // api call for submitting form
@@ -85,7 +92,10 @@ const ProfileForm = () => {
           name="about"
           label="About"
         />
-        <Button color="primary" size="large" type="submit" variant="outlined"> Save</Button>
+        <Button color="primary" size="large" type="submit" variant="outlined">
+          {" "}
+          Save
+        </Button>
       </Stack>
     </FormProvider>
   );
