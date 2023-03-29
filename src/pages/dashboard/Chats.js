@@ -93,7 +93,6 @@ const Chats = ({level}) => {
             scrollBehavior: "smooth",
             height: "100%",
             overflowX: "hidden",
-            // "::-webkit-slider-thumb{display:none}"
           }}
         >
           {/* pinned chats */}
