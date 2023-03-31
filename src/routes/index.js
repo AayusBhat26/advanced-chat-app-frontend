@@ -119,7 +119,7 @@ const Calendar = Loadable(
 );
 // todo page
 const Todo = Loadable(
-  lazy(() => import("../components/todoComponent/src/index"))
+  lazy(() => import("../components/todoComponent/src/Todo-index"))
 );
 // group page
 const GroupPage = Loadable(lazy(() => import("../pages/dashboard/Group")));
