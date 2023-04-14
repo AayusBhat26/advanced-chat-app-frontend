@@ -6,6 +6,7 @@ import {
   Avatar,
   Menu,
   MenuItem,
+  Typography,
   // Tooltip,
 } from "@mui/material";
 import Logo from "../../assets/Images/logo.png";
@@ -75,10 +76,10 @@ const SideBar = () => {
       sx={{
         backgroundColor: theme.palette.background.paper,
         height: "100vh",
-        width: 100,
+        width: 90,
         boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
-        zIndex:"10", 
-        borderRadius:"30px"
+        zIndex: "10",
+        borderRadius: "10px",
       }}
     >
       <Stack
@@ -142,11 +143,12 @@ const SideBar = () => {
                           ? "#000"
                           : theme.palette.text.primary,
                     }}
-                    onClick={()=>{
-                      navigate(getPath(element.index))
+                    onClick={() => {
+                      navigate(getPath(element.index));
                     }}
                   >
                     {element.icon}
+                    <Typography variant="caption" marginLeft={"5px"} fontWeight={1000}>{element.title}</Typography>
                   </IconButton>
                 </Box>
               ) : (
@@ -167,7 +169,6 @@ const SideBar = () => {
                 </IconButton>
               )
             )}
-           
           </Stack>
         </Stack>
 
@@ -209,23 +210,23 @@ const SideBar = () => {
             <Stack spacing={1} px={1}>
               {Profile_Menu.map((singleAction, index) => {
                 return (
-                  <MenuItem  key={index}  onClick={()=>{
-                    handleClick()
-
-                  }}>
+                  <MenuItem
+                    key={index}
+                    onClick={() => {
+                      handleClick();
+                    }}
+                  >
                     {/* {singleAction.title} */}
-                    <Stack 
-                    onClick={()=>{
-                    navigate(getMenuPath(index));
-
-                    }}
-                    sx={{
-                      width:100
-                    }}
-                    direction={'row'}
-                    alignItems={"center"}
-                    justifyContent={"space-between"}
-
+                    <Stack
+                      onClick={() => {
+                        navigate(getMenuPath(index));
+                      }}
+                      sx={{
+                        width: 100,
+                      }}
+                      direction={"row"}
+                      alignItems={"center"}
+                      justifyContent={"space-between"}
                     >
                       <span>{singleAction.title}</span>
                       {singleAction.icon}

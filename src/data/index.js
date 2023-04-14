@@ -33,26 +33,32 @@ const Nav_Buttons = [
   {
     index: 0,
     icon: <ChatText />,
+    title: "Chat",
   },
   {
     index: 1,
     icon: <UserList />,
+    title: "Groups",
   },
   {
     index: 2,
     icon: <PhoneCall />,
+    title: "Call",
   },
   {
     index: 3,
     icon: <ListChecks />,
+    title: "To Do",
   },
   {
     index: 4,
     icon: <Timer />,
+    title: "Pomodoro",
   },
   {
     index: 5,
     icon: <GearSix />,
+    title: "Settings",
   },
 ];
 
