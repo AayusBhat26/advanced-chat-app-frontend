@@ -23,6 +23,7 @@ export default function Router() {
     <Box
       sx={{
         display: "flex",
+        // width:
       }}
     >
       {useRoutes([
@@ -119,7 +120,7 @@ const Calendar = Loadable(
 );
 // todo page
 const Todo = Loadable(
-  lazy(() => import("../components/todoComponent/src/Todo-index"))
+  lazy(() => import("../components/todoComponent/index"))
 );
 // group page
 const GroupPage = Loadable(lazy(() => import("../pages/dashboard/Group")));
