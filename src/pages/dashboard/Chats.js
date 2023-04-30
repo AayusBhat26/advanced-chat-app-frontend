@@ -75,7 +75,7 @@ const Chats = ({level}) => {
             <Archive size={20} />
             <Button>
               <Typography fontSize={"14px"} fontWeight={"500"} color="#676767">
-                Social.Messages.Archived
+                PROD.Messages.Archived
                 {/* {theme.palette.mode === "light"
             ? "#F8FAFF"
             : theme.palette.background.paper} */}
@@ -125,7 +125,7 @@ const Chats = ({level}) => {
                 color: "#676767",
               }}
             >
-              Socials.Messages.Others
+              PROD.Messages.Others
             </Typography>
             <Divider />
 

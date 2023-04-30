@@ -76,10 +76,11 @@ const SideBar = () => {
       sx={{
         backgroundColor: theme.palette.background.paper,
         height: "100vh",
-        width: "12vw",
+        width: "6.5vw",
         // boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
         zIndex: "10",
-        borderRadius: "10px",
+        borderRadius: "1px",
+        borderRight: "1px solid #292c35",
       }}
     >
       <Stack
@@ -95,10 +96,10 @@ const SideBar = () => {
         <Stack alignItems={"center"} spacing={4}>
           <Box
             sx={{
-              backgroundColor: theme.palette.secondary.main,
+              backgroundColor: theme.palette.secondary,
               width: 64,
               height: 64,
-              borderRadius: 2.5,
+              borderRadius: 1,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -148,7 +149,13 @@ const SideBar = () => {
                     }}
                   >
                     {element.icon}
-                    <Typography variant="caption" marginLeft={"5px"} fontWeight={1000}>{element.title}</Typography>
+                    <Typography
+                      variant="caption"
+                      marginLeft={"5px"}
+                      fontWeight={1000}
+                    >
+                      {element.title}
+                    </Typography>
                   </IconButton>
                 </Box>
               ) : (

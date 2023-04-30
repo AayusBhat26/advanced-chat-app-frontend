@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { dispatch } from "../store";
+// import { dispatch } from "../store";
 
 // initial state.
 const initialState = {
@@ -11,7 +11,6 @@ const initialState = {
     // other possible values could be:
     // starred messges, shared documents, link and media.
     type:"", 
-    level:5,
   },
 };
 
@@ -35,32 +34,14 @@ const slice = createSlice({
 });
 export default slice.reducer;
 
-// toggle sidebar.
+
 export function ToggleSidebar() {
-  // todo: return an async function.
-  // since we are not using sort of payload in the togglesidebar function above, so do not require any payload.
-  return async () => {
+  return async (dispatch, getState) => {
     dispatch(slice.actions.toggleSidebar());
   };
 }
-// update sidebar type
 export function UpdateSidebarType(type) {
-  return async () => {
-    dispatch(
-      slice.actions.updateSidebarType({
-        type,
-      })
-    );
+  return async (dispatch, getState) => {
+    dispatch(slice.actions.updateSidebarType({ type }));
   };
-}
-
-// update level 
-export function UpdateLevel(level){
-  return async()=>{
-    dispatch(
-      slice.actions.updateLevel({
-        level
-      })
-    )
-  }
 }

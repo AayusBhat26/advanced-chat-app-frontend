@@ -113,16 +113,16 @@ const COMMON = {
 const palette = {
   light: {
     ...COMMON,
-    mode: 'light',
+    mode: "light",
     text: { primary: GREY[800], secondary: GREY[600], disabled: GREY[500] },
-    background: { paper: '#fff', default: '#fff', neutral: GREY[200] },
+    background: { paper: "#fff", default: "#fff", neutral: GREY[200] },
     action: { active: GREY[600], ...COMMON.action },
   },
   dark: {
     ...COMMON,
-    mode: 'dark',
-    text: { primary: '#fff', secondary: GREY[500], disabled: GREY[600] },
-    background: { paper: GREY[800], default: GREY[900], neutral: GREY[500_16] },
+    mode: "dark",
+    text: { primary: "#fff", secondary: GREY[500], disabled: GREY[600] },
+    background: { paper: "#202428", default: "#282d33", neutral: GREY[500_16] },
     action: { active: GREY[500], ...COMMON.action },
   },
 };
