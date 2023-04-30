@@ -47,6 +47,10 @@ export default function Router() {
               element: <NewPasswordPage />,
               path: "new-password",
             },
+            {
+              element: <Verify />,
+              path: "verify",
+            },
           ],
         },
         {
@@ -141,6 +145,9 @@ const NewPasswordPage = Loadable(
 // profile page
 const ProfilePage=Loadable(lazy(()=>import("../pages/dashboard/Profile.js")))
 
+
+// verify otp
+const Verify = Loadable(lazy(() =>import("../pages/auth/Verify")));
 
 
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));

@@ -9,7 +9,11 @@ import {
   Stack,
 } from "@mui/material";
 import { TextFieldAdv } from "../../components/hook-form";
+import { ForgotPassword } from "../../redux/slices/auth";
+import { useDispatch, useSelector } from "react-redux";
+
 const ResetPasswordForm = () => {
+  const dispatch = useDispatch();
   // validation rules.
   const ResetPasswordSchema = Yup.object().shape({
     email: Yup.string()
@@ -36,6 +40,7 @@ const ResetPasswordForm = () => {
   const onSubmit = async (data) => {
     try {
       // api call for submitting form
+      dispatch(ForgotPassword(data))
     } catch (error) {
       console.log(error);
       reset();

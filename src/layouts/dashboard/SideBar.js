@@ -17,32 +17,35 @@ import { faker } from "@faker-js/faker";
 import { useTheme } from "@mui/material/styles";
 import useSettings from "../../hooks/useSettings";
 import MaterialUISwitch from "../../components/MaterialUISwitch/MaterialUISwitch";
-import { 
+import {
   // Link
-  useNavigate } from "react-router-dom";
+  useNavigate,
+} from "react-router-dom";
+import { LogoutUser } from "../../redux/slices/auth";
+import { useDispatch, useSelector } from "react-redux";
 
 // path for navigation buttons
 
 const getPath = (index) => {
   switch (index) {
-    case 0: 
-      return "/app"
+    case 0:
+      return "/app";
     case 1:
-      return "/app/group"
-    case 2: 
-      return "app/call"
+      return "/app/group";
+    case 2:
+      return "app/call";
     case 3:
-      return "/app/todo"
+      return "/app/todo";
     case 4:
-      return "/app/pomodoro"
+      return "/app/pomodoro";
     case 5:
-      return "/app/settings"
+      return "/app/settings";
     default:
       break;
   }
 };
-// menu item 
-const getMenuPath = (index)=>{
+// menu item
+const getMenuPath = (index) => {
   switch (index) {
     case 0:
       return "app/profile";
@@ -50,11 +53,13 @@ const getMenuPath = (index)=>{
       return "/app/settings";
     case 2:
       // todo: jwt token bazi and set isAuth = false.
-      return "/auth/login" ;
-      default:break
+      return "/auth/login";
+    default:
+      break;
   }
-}
+};
 const SideBar = () => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   // console.log(theme);
   // navigate
@@ -221,12 +226,20 @@ const SideBar = () => {
                     key={index}
                     onClick={() => {
                       handleClick();
+                     
                     }}
                   >
                     {/* {singleAction.title} */}
                     <Stack
                       onClick={() => {
-                        navigate(getMenuPath(index));
+                        // index of logout icon is 2
+                         if (index === 2) {
+                           dispatch(LogoutUser());
+                         }
+                         else{
+
+                           navigate(getMenuPath(index));
+                         }
                       }}
                       sx={{
                         width: 100,
