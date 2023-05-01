@@ -23,7 +23,10 @@ import {
 } from "react-router-dom";
 import { LogoutUser } from "../../redux/slices/auth";
 import { useDispatch, useSelector } from "react-redux";
+import { ArrowLeft } from "phosphor-react";
+// import {useLocalStorageBoolean, useLocalStorageString} from "react-use-window-localstorage"
 
+// import { useDispatch } from "react-redux";
 // path for navigation buttons
 
 const getPath = (index) => {
@@ -59,12 +62,15 @@ const getMenuPath = (index) => {
   }
 };
 const SideBar = () => {
+  const change = useSelector((state) => state.sidebarToggle.sidebarToggle);
+
   const dispatch = useDispatch();
   const theme = useTheme();
   // console.log(theme);
   // navigate
   const navigate = useNavigate();
   const [selected, setSelected] = useState(0);
+ 
   const { onToggleMode } = useSettings();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -75,15 +81,18 @@ const SideBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  // console.log(change);
+
   return (
     <Box
       p={2}
       sx={{
         backgroundColor: theme.palette.background.paper,
         height: "100vh",
-        width: "6.5vw",
+        width: change ? "12vw" : "0vw",
+        display: change ? "block" : "none",
         // boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
-        zIndex: "10",
+        // zIndex: "10",
         borderRadius: "1px",
         borderRight: "1px solid #292c35",
       }}
@@ -96,7 +105,7 @@ const SideBar = () => {
           width: "100%",
           height: "100%",
         }}
-        spacing={3}
+        spacing={1}
       >
         <Stack alignItems={"center"} spacing={4}>
           <Box
@@ -133,7 +142,7 @@ const SideBar = () => {
               element.index === selected ? (
                 <Box
                   key={element.index}
-                  p={1}
+                  // p={1}
                   sx={{
                     backgroundColor: theme.palette.secondary.main,
                     borderRadius: 1.5,
@@ -193,6 +202,19 @@ const SideBar = () => {
             }}
             defaultChecked
           />
+          <Box
+            sx={{
+              color: "white",
+              fontWeight: "400",
+              margin: "10px",
+              backgroundColor: "#222016",
+              padding: "10px",
+              borderRadius: "50%",
+            }}
+            // onClick={}
+          >
+            <ArrowLeft size={18} />
+          </Box>
           <Avatar
             src={faker.image.avatar()}
             alt="avatar"
@@ -226,20 +248,17 @@ const SideBar = () => {
                     key={index}
                     onClick={() => {
                       handleClick();
-                     
                     }}
                   >
                     {/* {singleAction.title} */}
                     <Stack
                       onClick={() => {
                         // index of logout icon is 2
-                         if (index === 2) {
-                           dispatch(LogoutUser());
-                         }
-                         else{
-
-                           navigate(getMenuPath(index));
-                         }
+                        if (index === 2) {
+                          dispatch(LogoutUser());
+                        } else {
+                          navigate(getMenuPath(index));
+                        }
                       }}
                       sx={{
                         width: 100,

@@ -19,9 +19,12 @@ import React from "react";
 import "./index.css"
 import { Search, SearchIconWrapper, StyledInputBase } from "../../components/Search";
 import ChatComponent from "../../components/ChatComponent";
+import { useSelector, useDispatch } from "react-redux";
+import { ToogleSidebarState } from "../../redux/slices/sidebar";
 
-
-const Chats = ({level}) => {
+const Chats = () => {
+  const dispatch = useDispatch();
+  const change = useSelector((state) => state.sidebarToggle.sidebarToggle);
   const theme = useTheme();
   return (
     // <Stack direction={"column-reverse"}>
@@ -35,7 +38,7 @@ const Chats = ({level}) => {
             ? "#F8FAFF"
             : theme.palette.background.paper,
         boxShadow: "0px 0px 20px rgba(0,0,0,0.25)",
-        borderRadius:"10px"
+        borderRadius: "10px",
       }}
     >
       {/* <Stack direction={"column-reverse"}> */}
@@ -52,10 +55,10 @@ const Chats = ({level}) => {
           alignItems={"center"}
         >
           <Typography fontSize={"18px"} fontWeight={"1000"}>
-            Social.Messages
+            PROD.Messages
           </Typography>
           <IconButton>
-            <Alien size={40} />
+            <Alien size={40} onClick={() => dispatch(ToogleSidebarState())} />
           </IconButton>
         </Stack>
         <Stack
@@ -111,7 +114,7 @@ const Chats = ({level}) => {
             <Divider />
 
             {ChatList.filter((element) => element.pinned).map((singleChat) => {
-              return <ChatComponent  {...singleChat} level={level}/>;
+              return <ChatComponent {...singleChat} />;
             })}
             {/* todo: create a pinned messages section. */}
           </Stack>

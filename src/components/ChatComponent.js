@@ -5,7 +5,7 @@ import { useTheme,
 } from "@mui/material/styles";
 import StyledBadge from "./Styledbadge";
 
-const ChatComponent = ({ id, name, img, msg, time, unread, online, level }) => {
+const ChatComponent = ({ id, name, img, msg, time, unread, online }) => {
   const theme = useTheme();
   return (
     <Box
@@ -40,7 +40,7 @@ const ChatComponent = ({ id, name, img, msg, time, unread, online, level }) => {
             {/* <Typography variant="subtitle2">{name}</Typography> */}
             <Stack width={"100%"} direction={"row"} spacing={1} justifyContent={"flex-start"} alignItems={"center"}>
               <Typography variant="subtitle2" fontSize={"16px"}>{name}</Typography>
-              <Typography fontSize={"14px"}>Lvl {level}</Typography>
+              <Typography fontSize={"14px"}>Lvl </Typography>
             </Stack>
             <Typography variant="caption">{msg}</Typography>
           </Stack>

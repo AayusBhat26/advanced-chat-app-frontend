@@ -27,9 +27,6 @@ const slice = createSlice({
     updateSidebarType(state, action) {
       state.sidebar.type = action.payload.type;
     },
-    updateLevel(state, action){
-      state.sidebar.level = action.payload.level
-    }
   },
 });
 export default slice.reducer;

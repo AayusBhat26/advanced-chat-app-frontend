@@ -13,7 +13,12 @@ import {
 } from "@mui/material";
 import { TextFieldAdv } from "../../components/hook-form";
 import { Eye, EyeClosed } from "phosphor-react";
+import { RegisterUser } from "../../redux/slices/auth";
+import {useDispatch} from "react-redux";
 const RegisterForm = () => {
+
+  // dispatch
+  const dispatch = useDispatch();
   const [showPasswordState, setShowPasswordState] = useState(false);
   // validation rules.
   const RegisterSchema = Yup.object().shape({
@@ -22,7 +27,7 @@ const RegisterForm = () => {
     email: Yup.string()
       .required("Email is Required")
       .email("Enter A valid email address"),
-    password: Yup.string().required("Password is Required").length(6, 32),
+    password: Yup.string().required("Password is Required")
   });
 
   const defaultValues = {
@@ -41,12 +46,13 @@ const RegisterForm = () => {
     reset,
     setError,
     handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: { errors },
   } = methods;
 
   const onSubmit = async (data) => {
     try {
       // api call for submitting form
+      dispatch(RegisterUser(data))
     } catch (error) {
       console.log(error);
       reset();

@@ -14,22 +14,6 @@ const GeneralApp = () => {
   const theme = useTheme();
   // todo: use useSelector method to select the data from store.
   const { sidebar } = useSelector((store) => store.app);
-  // const {level} = useSelector((store)=>store.app)
-  // const returnSwitch=(param)=>{
-  //   switch (param) {
-  //     case "CONTACT":
-  //       return <Contact />;
-  //     case "SHARED":
-  //       return <SharedMessages />;
-  //     case "STARRED":
-  //       return <StarredMessages />;
-
-  //     case undefined:
-  //       return <></>
-  //     default:
-  //       return ""
-  //   }
-  // }
   return (
     <Stack
       direction={"row"}
@@ -38,7 +22,7 @@ const GeneralApp = () => {
       }}
     >
       {/* single chat component */}
-      <Chats level = {""} />
+      <Chats/>
       {/*converstion */}
       {/* <Fade></Fade> */}
       <Box
@@ -55,13 +39,7 @@ const GeneralApp = () => {
       >
         <Converstion level ={10}/>
       </Box>
-      {/* {sidebar.type === "CONTACT" ? (
-        <Contact />
-      ) : sidebar.type === "SHARED" ? (
-        <SharedMessages />
-      ) : sidebar.type === "STARRED" ? (
-        <StarredMessages />
-      ) : null} */}
+     
       {
         sidebar.open && sidebar.type==="CONTACT"? (<Contact/>) :(sidebar.type==="SHARED" ? <SharedMessages/> :(sidebar.type === "STARRED" ? <StarredMessages /> : null))
       }

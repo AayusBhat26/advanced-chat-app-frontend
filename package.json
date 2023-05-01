@@ -39,6 +39,7 @@
     "react-scripts": "5.0.1",
     "react-textarea-autosize": "^8.4.0",
     "react-transition-group": "^4.4.5",
+    "react-use-window-localstorage": "^1.0.18",
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "simplebar-react": "^2.4.3",

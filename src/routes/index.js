@@ -91,6 +91,10 @@ export default function Router() {
               path: "/app/todo",
               element: <Todo />,
             },
+            {
+              path:"/app/todo/board", 
+              element:<Borad/>
+            },
             { path: "404", element: <Page404 /> },
             { path: "*", element: <Navigate to="/404" replace /> },
           ],
@@ -106,7 +110,7 @@ const GeneralApp = Loadable(
 );
 // desc 
 const ComponentDesc=Loadable(
-  lazy(()=>import("../components/AppDesc/index"))
+  lazy(()=>import("../components/AppDesc/Index"))
 )
 // setting page
 const Settings = Loadable(
@@ -124,10 +128,11 @@ const Calendar = Loadable(
 );
 // todo page
 const Todo = Loadable(
-  lazy(() => import("../components/todoComponent/index"))
+  lazy(() => import("../components/todoComponent/Index"))
 );
 // group page
 const GroupPage = Loadable(lazy(() => import("../pages/dashboard/Group")));
+const Borad = Loadable(lazy(() => import("../components/todoComponent/src/pages/Board")));
 
 
 // login page
