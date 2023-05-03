@@ -1,18 +1,69 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { Stack } from "@mui/system";
 import SideBar from "./SideBar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { connectSokcet, socket } from "../../socket";
+import { showSnackbar } from "../../redux/slices/app";
 // const isAuth = true;
 const DashboardLayout = () => {
-  // todo: create a redux slice 
-  const {isLoggedIn} = useSelector((state)=>state.auth)
+  const dispatch = useDispatch();
+  // todo: create a redux slice
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const user_id = window.localStorage.getItem("user_id");
+  useEffect(() => {
+    if (isLoggedIn) {
+      window.onload = function () {
+        if (!window.location.hash) {
+          window.location = window.location + `#loaded`;
+          window.location.reload();
+        }
+      };
+      window.onload();
+
+      if (!socket) {
+        connectSokcet(user_id);
+      }
+
+      // events
+      // 1. new friend request.
+      socket.on("new_friend_request", (data) => {
+        dispatchEvent(
+          showSnackbar({
+            severity: "success",
+            message: data.message,
+          })
+        );
+      });
+      socket.on("request_accepted", (data) => {
+        dispatchEvent(
+          showSnackbar({
+            severity: "success",
+            message: data.message,
+          })
+        );
+      });
+      socket.on("request_sent", (data) => {
+        dispatchEvent(
+          showSnackbar({
+            severity: "success",
+            message: data.message,
+          })
+        );
+      });
+    }
+    return ()=>{
+      socket.off("new_friend_request")
+      socket.off("request_accepted")
+      socket.off("request_sent");
+    }
+  }, [isLoggedIn, socket]);
   if (!isLoggedIn) {
     return <Navigate to={"/auth/login"} />;
   }
   return (
     <Stack direction={"row"}>
-    <SideBar/>
+      <SideBar />
       <Outlet />
     </Stack>
   );
