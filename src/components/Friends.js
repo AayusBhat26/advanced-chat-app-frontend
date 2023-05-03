@@ -9,10 +9,10 @@ const StyledChatBox = styled(Box)(({ theme }) => ({
     cursor: "pointer",
   },
 }));
+const user_id = window.localStorage.getItem("user_id");
 const UserComponent = ({ firstName, lastName, _id, online, img, level }) => {
   const theme = useTheme();
   const name = `${firstName} ${lastName}`;
-  const user_id = window.localStorage.getItem("user_id");
   return (
     <StyledChatBox
       sx={{
@@ -132,7 +132,6 @@ const FriendRequestComponent = ({
 const FriendComponent = ({ firstName, lastName, _id, online, img, level }) => {
   const theme = useTheme();
   const name = `${firstName} ${lastName}`;
-//   const user_id = window.localStorage.getItem("user_id");
   return (
     <StyledChatBox
       sx={{
@@ -185,7 +184,13 @@ const FriendComponent = ({ firstName, lastName, _id, online, img, level }) => {
 
         <IconButton onClick={()=>{
             // start a new converstaion or go to previou convo.
+            socket.emit("start_conversation", {
+              to: _id,
+              from : user_id, 
+            })
+
         }}>
+          
           <ChatsTeardrop />
         </IconButton>
       </Stack>

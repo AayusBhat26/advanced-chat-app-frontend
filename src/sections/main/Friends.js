@@ -6,22 +6,28 @@ import {
   FetchFriends,
   FetchUsers,
 } from "../../redux/slices/app";
-import { FriendComponent, FriendRequestComponent, UserComponent } from "../../components/Friends";
+import {
+  FriendComponent,
+  FriendRequestComponent,
+  UserComponent,
+} from "../../components/Friends";
 const UsersList = () => {
   const dispatch = useDispatch();
-
-  const { users } = useSelector((state) => state.app);
-  // console.log(users);
   useEffect(() => {
     dispatch(FetchUsers());
   }, []);
+  const { users } = useSelector((state) => state.app);
+
+  console.log(users);
 
   return (
     <>
       {users.map((el, idx) => {
-        return <UserComponent key={el._id} {...el}>
-          {el}
-        </UserComponent>;
+        return (
+          <UserComponent key={el._id} {...el}>
+            {el}
+          </UserComponent>
+        );
       })}
     </>
   );
@@ -39,7 +45,8 @@ const FriendsList = () => {
   return (
     <>
       {friends.map((el, idx) => {
-        return <FriendComponent key={el._id} {...el}  />;      })}
+        return <FriendComponent key={el._id} {...el} />;
+      })}
     </>
   );
 };
@@ -47,7 +54,7 @@ const FriendsList = () => {
 const RequestsList = () => {
   const dispatch = useDispatch();
 
-  const { friendsRequests } = useSelector((state) => state.app);
+  const { friendRequests } = useSelector((state) => state.app);
   // console.log(friendsRequests);
 
   useEffect(() => {
@@ -56,8 +63,10 @@ const RequestsList = () => {
 
   return (
     <>
-      {friendsRequests.map((el, idx) => {
-        return  <FriendRequestComponent key={el._id} {...el.sender} id={el._id} />;
+      {friendRequests.map((el, idx) => {
+        return (
+          <FriendRequestComponent key={el._id} {...el.sender} id={el._id} />
+        );
       })}
     </>
   );

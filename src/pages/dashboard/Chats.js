@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 // import ChatList from "../../data/index"
 import {ChatList} from '../../data/index'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Tooltip from "@mui/material/Tooltip";
 // import { faker } from "@faker-js/faker";
 import "./index.css"
@@ -22,19 +22,31 @@ import ChatComponent from "../../components/ChatComponent";
 import { useSelector, useDispatch } from "react-redux";
 import { ToogleSidebarState } from "../../redux/slices/sidebar";
 import Friends from "../../sections/main/Friends";
-
+import { socket } from "../../socket";
+const user_id = window.localStorage.getItem("user_id");
 const Chats = () => {
-  
   const dispatch = useDispatch();
   const change = useSelector((state) => state.sidebarToggle.sidebarToggle);
   const theme = useTheme();
   const [openDialog, setOpenDialog] = useState(false);
-  const handleCloseDialog = ()=>{
+  const {conversations}=useSelector((state)=>state.conversation.direct_chat)
+
+  // when component is loaded or redenred for the first time we want the list of chats
+  useEffect(()=>{
+    socket.emit("get_direct_conversations", {user_id}, (data)=>{
+      // data is the list of convos.
+
+    });
+  },[]);
+
+
+  const handleCloseDialog = () => {
     setOpenDialog(false);
-  }
+  };
   const handleOpenDialog = () => {
     setOpenDialog(true);
   };
+
   return (
     <>
       <Box
@@ -128,7 +140,7 @@ const Chats = () => {
             {/* pinned chats */}
 
             <Stack spacing={1.5}>
-              <Typography
+              {/* <Typography
                 // variant="subtitle2"
                 fontSize={"16px"}
                 fontWeight={"800"}
@@ -144,7 +156,7 @@ const Chats = () => {
                 (singleChat) => {
                   return <ChatComponent {...singleChat} />;
                 }
-              )}
+              )} */}
               {/* todo: create a pinned messages section. */}
             </Stack>
 
@@ -157,15 +169,15 @@ const Chats = () => {
                   color: "#676767",
                 }}
               >
-                PROD.Messages.Others
+                PROD.Messages.All
               </Typography>
               <Divider />
 
-              {ChatList.filter((element) => !element.pinned).map(
-                (singleChat) => {
+              {conversations
+                .filter((element) => !element.pinned)
+                .map((singleChat) => {
                   return <ChatComponent {...singleChat} />;
-                }
-              )}
+                })}
             </Stack>
           </Stack>
           {/* <Box>

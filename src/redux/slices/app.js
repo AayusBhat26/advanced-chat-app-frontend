@@ -16,10 +16,10 @@ const initialState = {
   },
   users: [],
   friends: [],
-  friendsRequests: [],
+  friendRequests: [],
   // for chat which is selected.
-  chat_type:null, 
-  room_id:null,
+  chat_type: null,
+  room_id: null,
 };
 
 // creating a slice.
@@ -53,12 +53,12 @@ const slice = createSlice({
       state.friends = action.payload.friends;
     },
     updateFriendRequests(state, action) {
-      state.friendsRequests = action.payload.request;
+      state.friendRequests = action.payload.requests;
     },
-    selectConversation(state, action){
+    selectConversation(state, action) {
       state.chat_type = "individual";
       state.room_id = action.payload.room_id;
-    }
+    },
   },
 });
 export default slice.reducer;
@@ -130,7 +130,7 @@ export function FetchFriends() {
         }
       )
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
         dispatch(slice.actions.updateFriends({ friends: response.data.data }));
       })
       .catch((err) => {
@@ -139,6 +139,28 @@ export function FetchFriends() {
   };
 }
 export function FetchFriendRequests() {
+  // return async (dispatch, getState) => {
+  //   await axios
+  //     .get(
+  //       "/user/get-friend-requests",
+
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${getState().auth.token}`,
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log(response);
+  //       dispatch(
+  //         slice.actions.updateFriendRequests({ requests: response.data.data })
+  //       );
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
   return async (dispatch, getState) => {
     await axios
       .get(
@@ -153,9 +175,7 @@ export function FetchFriendRequests() {
       )
       .then((response) => {
         console.log(response);
-        dispatch(
-          slice.actions.updateFriendRequests({ requests: response.data.data })
-        );
+        dispatch(slice.actions.updateFriendRequests({ requests: response.data.data }));
       })
       .catch((err) => {
         console.log(err);
