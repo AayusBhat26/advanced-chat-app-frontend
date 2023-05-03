@@ -78,11 +78,8 @@ const Chats = () => {
                 </IconButton>
               </Tooltip>
               <Tooltip title="Sidebar">
-                <IconButton>
-                  <Alien
-                    size={20}
-                    onClick={() => dispatch(ToogleSidebarState())}
-                  />
+                <IconButton onClick={() => dispatch(ToogleSidebarState())}>
+                  <Alien size={20} />
                 </IconButton>
               </Tooltip>
             </Stack>

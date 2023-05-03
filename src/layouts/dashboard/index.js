@@ -3,7 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { Stack } from "@mui/system";
 import SideBar from "./SideBar";
 import { useDispatch, useSelector } from "react-redux";
-import { connectSokcet, socket } from "../../socket";
+import { connectSocket, socket } from "../../socket";
 import { showSnackbar } from "../../redux/slices/app";
 // const isAuth = true;
 const DashboardLayout = () => {
@@ -22,7 +22,7 @@ const DashboardLayout = () => {
       window.onload();
 
       if (!socket) {
-        connectSokcet(user_id);
+        connectSocket(user_id);
       }
 
       // events
@@ -52,11 +52,11 @@ const DashboardLayout = () => {
         );
       });
     }
-    return ()=>{
-      socket.off("new_friend_request")
-      socket.off("request_accepted")
-      socket.off("request_sent");
-    }
+    // return ()=>{
+    //   socket.off("new_friend_request")
+    //   socket.off("request_accepted")
+    //   socket.off("request_sent");
+    // }
   }, [isLoggedIn, socket]);
   if (!isLoggedIn) {
     return <Navigate to={"/auth/login"} />;

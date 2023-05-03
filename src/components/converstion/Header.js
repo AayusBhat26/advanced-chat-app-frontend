@@ -25,7 +25,7 @@ import { ToggleSidebar, UpdateSidebarType } from '../../redux/slices/app';
 import { useDispatch } from 'react-redux';
 import "./index.css"
 
-const Header = ({level}) => {
+const Header = () => {
       const theme = useTheme();
       const dispatch = useDispatch();
   return (
@@ -73,7 +73,7 @@ const Header = ({level}) => {
           </Box>
           <Tooltip title="User Information">
             <Stack spacing={0.2}>
-            <Typography variant="subtitle2">{faker.name.fullName()}, lvl {level}</Typography>
+            <Typography variant="subtitle2">{faker.name.fullName()}, lvl {}</Typography>
             <Typography variant="caption">Online</Typography>
           </Stack>
           </Tooltip>

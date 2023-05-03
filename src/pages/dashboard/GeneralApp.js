@@ -1,6 +1,6 @@
 import React from "react";
 import Chats from "./Chats";
-import { Box, Fade, Stack } from "@mui/material";
+import { Box, Fade, Stack, Typography } from "@mui/material";
 import Converstion from "../../components/converstion";
 import { useTheme } from "@emotion/react";
 import Contact from "../../components/contact/Contact";
@@ -8,12 +8,13 @@ import { useSelector } from "react-redux";
 // import Zoom from "@mui/material/Zoom";
 import { StarredMessages } from "../../components/StarredMessages";
 import { SharedMessages } from "../../components/SharedMessages";
-// import "./index.css";
+import { Spinner } from "phosphor-react";
+import "./index.css";
 
 const GeneralApp = () => {
   const theme = useTheme();
   // todo: use useSelector method to select the data from store.
-  const { sidebar } = useSelector((store) => store.app);
+  const { sidebar, chat_type, room_id } = useSelector((store) => store.app);
   return (
     <Stack
       direction={"row"}
@@ -22,7 +23,7 @@ const GeneralApp = () => {
       }}
     >
       {/* single chat component */}
-      <Chats/>
+      <Chats />
       {/*converstion */}
       {/* <Fade></Fade> */}
       <Box
@@ -37,12 +38,33 @@ const GeneralApp = () => {
               : theme.palette.background.default,
         }}
       >
-        <Converstion level ={10}/>
+        {room_id !== null && chat_type === "individual" ? (
+          <Converstion />
+        ) : (
+          <Stack
+            spacing={2}
+            sx={{
+              height: "100%",
+              width: "100%",
+            }}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <Spinner size={400} className="loader"/>
+            <Typography variant="subtitle2">
+              Select A converstion or Start A New One
+            </Typography>
+          </Stack>
+        )}
       </Box>
-     
-      {
-        sidebar.open && sidebar.type==="CONTACT"? (<Contact/>) :(sidebar.type==="SHARED" ? <SharedMessages/> :(sidebar.type === "STARRED" ? <StarredMessages /> : null))
-      }
+
+      {sidebar.open && sidebar.type === "CONTACT" ? (
+        <Contact />
+      ) : sidebar.type === "SHARED" ? (
+        <SharedMessages />
+      ) : sidebar.type === "STARRED" ? (
+        <StarredMessages />
+      ) : null}
     </Stack>
   );
 };

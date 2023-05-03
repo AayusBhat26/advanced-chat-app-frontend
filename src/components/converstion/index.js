@@ -6,7 +6,7 @@ import ChatFooter from "../converstion/ChatFooter";
 import Messages from "./Messages";
 import "./index.css"
 import { useSelector } from "react-redux";
-const Converstion = ({level}) => {
+const Converstion = () => {
   const change = useSelector((state) => state.sidebarToggle.sidebarToggle);
 
   return (
@@ -14,7 +14,7 @@ const Converstion = ({level}) => {
     className="hideScrollbar"
     >
       {/* chat-header */}
-      <Header level={level}/>
+      <Header />
       {/* <>messages</> */}
       <Box
         width={"100%"}
