@@ -1,59 +1,71 @@
-import { Dialog, DialogContent, Stack, Tab, Tabs } from '@mui/material';
-import React, { useEffect, useState } from 'react'
-import {useDispatch, useSelector} from "react-redux"
-import { FetchFriendRequests, FetchFriends, FetchUsers } from '../../redux/slices/app';
-const UserList = ()=>{
-
+import { Dialog, DialogContent, Stack, Tab, Tabs } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  FetchFriendRequests,
+  FetchFriends,
+  FetchUsers,
+} from "../../redux/slices/app";
+const UsersList = () => {
   const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(FetchUsers())
-  }, [])
-  const {users} = useSelector((state)=>state.app)
+
+  const { users } = useSelector((state) => state.app);
+  // console.log(users);
+  useEffect(() => {
+    dispatch(FetchUsers());
+  }, []);
+
   return (
     <>
-    {users.map((ele, index)=>{
-      // todo: component for rendering. 
-      return <></>
-    })}
-    
+      {users.map((el, idx) => {
+        return <></>;
+      })}
     </>
-  )
-}
+  );
+};
+
 const FriendsList = () => {
   const dispatch = useDispatch();
+
+  const { friends } = useSelector((state) => state.app);
+  // console.log(friends);
   useEffect(() => {
     dispatch(FetchFriends());
   }, []);
-  const { friends } = useSelector((state) => state.app);
+
   return (
     <>
-      {friends.map((ele, index) => {
-        // todo: component for rendering.
+      {friends.map((el, idx) => {
         return <></>;
       })}
     </>
   );
 };
-const RequestList = () => {
+
+const RequestsList = () => {
   const dispatch = useDispatch();
+
+  const { friendsRequests } = useSelector((state) => state.app);
+  // console.log(friendsRequests);
+
   useEffect(() => {
     dispatch(FetchFriendRequests());
   }, []);
-  const { friendsRequests } = useSelector((state) => state.app);
+
   return (
     <>
-      {friendsRequests.map((ele, index) => {
-        // todo: component for rendering.
+      {friendsRequests.map((el, idx) => {
         return <></>;
       })}
     </>
   );
 };
-const Friends = ({open, handleClose}) => {
-      const [value, setValue] = useState(0);
-      const handleChange = (event, newValue)=>{
-            setValue(newValue);
-      }
+
+const Friends = ({ open, handleClose }) => {
+  const [value, setValue] = useState(0);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   return (
     <Dialog
       fullWidth
@@ -84,11 +96,11 @@ const Friends = ({open, handleClose}) => {
             {(() => {
               switch (value) {
                 case 0: // display all users.
-                return <UserList />;
+                  return <UsersList />;
                 case 1: // display friends
-                return <FriendsList />;
+                  return <FriendsList />;
                 case 2: // display friend requests
-                return <RequestList />;
+                  return <RequestsList />;
                 default:
                   break;
               }
@@ -98,6 +110,6 @@ const Friends = ({open, handleClose}) => {
       </DialogContent>
     </Dialog>
   );
-}
+};
 
-export default Friends
+export default Friends;

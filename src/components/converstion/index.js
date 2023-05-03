@@ -10,7 +10,7 @@ const Converstion = ({level}) => {
   const change = useSelector((state) => state.sidebarToggle.sidebarToggle);
 
   return (
-    <Stack height={"100%"} maxHeight={"100vh"} width={change ? "89%" :"100%"}
+    <Stack height={"100%"} maxHeight={"100vh"} width={change ? "90%" :"100%"}
     className="hideScrollbar"
     >
       {/* chat-header */}

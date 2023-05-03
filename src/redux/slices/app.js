@@ -1,17 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../utils/axios";
 
 // import { dispatch } from "../store";
 
 // initial state.
 const initialState = {
-  // since we have to show multiple components, therefore setting a intital state to display the contact information only.
   sidebar: {
     open: false,
-    // type: "CONTACT",
-    // other possible values could be:
-    // starred messges, shared documents, link and media.
-    type: "",
+    type: "CONTACT",
   },
   snackbar: {
     open: null,
@@ -93,66 +89,69 @@ export function UpdateSidebarType(type) {
 export function FetchUsers() {
   return async (dispatch, getState) => {
     await axios
-      .get("/user/get-users", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getState().auth.token}`,
-        },
+      .get(
+        "/user/get-users",
+
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getState().auth.token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        dispatch(slice.actions.updateUsers({ users: response.data.data }));
       })
-      .then((res) => {
-        console.log(res);
-        dispatch(
-          slice.actions.updateUsers({
-            users: res.data.data,
-          })
-        );
-      })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
       });
   };
 }
+
 export function FetchFriends() {
   return async (dispatch, getState) => {
     await axios
-      .get("/user/get-friends", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getState().auth.token}`,
-        },
+      .get(
+        "/user/get-friends",
+
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getState().auth.token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        dispatch(slice.actions.updateFriends({ friends: response.data.data }));
       })
-      .then((res) => {
-        console.log(res);
-        dispatch(
-          slice.actions.updateFriends({
-            friends: res.data.data,
-          })
-        );
-      })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
       });
   };
 }
 export function FetchFriendRequests() {
   return async (dispatch, getState) => {
     await axios
-      .get("/user/get-friend-requests", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getState().auth.token}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
+      .get(
+        "/user/get-friend-requests",
+
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getState().auth.token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
         dispatch(
-          slice.actions.updateFriendRequests({
-            request: res.data.data,
-          })
+          slice.actions.updateFriendRequests({ requests: response.data.data })
         );
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
       });
   };
 }
