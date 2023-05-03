@@ -89,12 +89,12 @@ const SideBar = () => {
       sx={{
         backgroundColor: theme.palette.background.paper,
         height: "100vh",
-        width: change ? "12vw" : "0vw",
+        width: change ? "7vw" : "0vw",
         display: change ? "block" : "none",
         // boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
         // zIndex: "10",
         borderRadius: "1px",
-        borderRight: "1px solid #292c35",
+        // borderRight: "1px solid #292c35",
       }}
     >
       <Stack
@@ -202,7 +202,7 @@ const SideBar = () => {
             }}
             defaultChecked
           />
-          <Box
+          {/* <Box
             sx={{
               color: "white",
               fontWeight: "400",
@@ -214,7 +214,7 @@ const SideBar = () => {
             // onClick={}
           >
             <ArrowLeft size={18} />
-          </Box>
+          </Box> */}
           <Avatar
             src={faker.image.avatar()}
             alt="avatar"

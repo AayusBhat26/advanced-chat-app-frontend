@@ -4,8 +4,12 @@ import { useTheme,
   // styled 
 } from "@mui/material/styles";
 import StyledBadge from "./Styledbadge";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const ChatComponent = ({ id, name, img, msg, time, unread, online }) => {
+
+  // const dispatch = useDispatch();
   const theme = useTheme();
   return (
     <Box
@@ -15,7 +19,7 @@ const ChatComponent = ({ id, name, img, msg, time, unread, online }) => {
         backgroundColor:
           theme.palette.mode === "light" ? "#fff" : theme.palette.background.de,
       }}
-      border={"0.4px solid black"}
+      // border={"0.4px solid black"}
       p={2}
     >
       <Stack

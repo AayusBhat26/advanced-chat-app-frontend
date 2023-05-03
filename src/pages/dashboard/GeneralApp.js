@@ -18,7 +18,7 @@ const GeneralApp = () => {
     <Stack
       direction={"row"}
       sx={{
-        width: "100%",
+        width: "100vw",
       }}
     >
       {/* single chat component */}

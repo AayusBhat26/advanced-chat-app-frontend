@@ -5,10 +5,12 @@ import Header from "./Header";
 import ChatFooter from "../converstion/ChatFooter";
 import Messages from "./Messages";
 import "./index.css"
-
+import { useSelector } from "react-redux";
 const Converstion = ({level}) => {
+  const change = useSelector((state) => state.sidebarToggle.sidebarToggle);
+
   return (
-    <Stack height={"100%"} maxHeight={"100vh"} width={"auto"}
+    <Stack height={"100%"} maxHeight={"100vh"} width={change ? "89%" :"100%"}
     className="hideScrollbar"
     >
       {/* chat-header */}
