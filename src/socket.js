@@ -1,9 +1,15 @@
-// will contain the logic for socket.io
-import io from "socket.io-client"
+import io from "socket.io-client"; // Add this
+
 let socket;
-const connectSocket = (user_id)=>{
-      socket = io("http://localhost:3000", {
-            query:`user_id=${user_id}`
-      })
-}
-export { socket, connectSocket }; 
+
+const connectSocket = (user_id) => {
+  socket = io("http://localhost:3000", {
+    reconnectionDelayMax: 10000,
+    query:{
+      user_id:user_id
+    }
+    //  `user_id=${user_id}`,
+  });
+}; // Add this -- our server will run on port 4000, so we connect to it from here
+
+export { socket, connectSocket };

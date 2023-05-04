@@ -14,12 +14,13 @@ const initialState = {
     message: null,
     severity: null,
   },
-  users: [],
-  friends: [],
-  friendRequests: [],
-  // for chat which is selected.
+  users: [], // all users of app who are not friends and not requested yet
+  all_users: [],
+  friends: [], // all friends
+  friendRequests: [], // all friend requests
   chat_type: null,
   room_id: null,
+  call_logs: [],
 };
 
 // creating a slice.
@@ -48,6 +49,9 @@ const slice = createSlice({
     },
     updateUsers(state, action) {
       state.users = action.payload.users;
+    },
+    updateAllUsers(state, action) {
+      state.all_users = action.payload.users;
     },
     updateFriends(state, action) {
       state.friends = action.payload.friends;
@@ -107,7 +111,7 @@ export function FetchUsers() {
         }
       )
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         dispatch(slice.actions.updateUsers({ users: response.data.data }));
       })
       .catch((err) => {
@@ -130,8 +134,8 @@ export function FetchFriends() {
         }
       )
       .then((response) => {
-        console.log(response.data);
-        dispatch(slice.actions.updateFriends({ friends: response.data.data }));
+        console.log(response.data.data.friends);
+        dispatch(slice.actions.updateFriends({ friends: response.data.data.friends }));
       })
       .catch((err) => {
         console.log(err);
@@ -139,32 +143,10 @@ export function FetchFriends() {
   };
 }
 export function FetchFriendRequests() {
-  // return async (dispatch, getState) => {
-  //   await axios
-  //     .get(
-  //       "/user/get-friend-requests",
-
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${getState().auth.token}`,
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       console.log(response);
-  //       dispatch(
-  //         slice.actions.updateFriendRequests({ requests: response.data.data })
-  //       );
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
   return async (dispatch, getState) => {
     await axios
       .get(
-        "/user/get-friend-requests",
+        "/user/get-requests",
 
         {
           headers: {
@@ -175,13 +157,16 @@ export function FetchFriendRequests() {
       )
       .then((response) => {
         console.log(response);
-        dispatch(slice.actions.updateFriendRequests({ requests: response.data.data }));
+        dispatch(
+          slice.actions.updateFriendRequests({ requests: response.data.data })
+        );
       })
       .catch((err) => {
         console.log(err);
       });
   };
 }
+
 export const SelectConversation = ({ room_id }) => {
   return (dispatch, getState) => {
     dispatch(slice.actions.selectConversation({ room_id }));
