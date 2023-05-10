@@ -19,16 +19,16 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const UsersList = () => {
   const dispatch = useDispatch();
 
-  const { users } = useSelector((state) => state.app);
+  
 
   useEffect(() => {
     dispatch(FetchUsers());
   }, []);
-
+  const { users } = useSelector((state) => state.app);
   return (
     <>
       {users.map((el, idx) => {
-        return <UserElement key={idx} {...el} />;
+        return <UserElement key={el._id} {...el} />;
       })}
     </>
   );
@@ -37,12 +37,13 @@ const UsersList = () => {
 const FriendsList = () => {
   const dispatch = useDispatch();
 
-  const { friends } = useSelector((state) => state.app);
 
   useEffect(() => {
     dispatch(FetchFriends());
   }, []);
-  // console.log(friends);
+  const { friends } = useSelector((state) => state.app);
+
+  console.log(friends);
 
   return (
     <>
@@ -56,16 +57,18 @@ const FriendsList = () => {
 const RequestsList = () => {
   const dispatch = useDispatch();
 
-  const { friendRequests } = useSelector((state) => state.app);
-
+  // console.log("before use effect");
   useEffect(() => {
     dispatch(FetchFriendRequests());
   }, []);
+  const { friendRequests } = useSelector((state) => state.app);
+
+  console.log(friendRequests);
 
   return (
     <>
       {friendRequests.map((el, idx) => {
-        return <FriendRequestElement key={idx} {...el.sender} id={el._id} />;
+        return <FriendRequestElement key={el._id} {...el.sender} id={el._id} />;
       })}
     </>
   );

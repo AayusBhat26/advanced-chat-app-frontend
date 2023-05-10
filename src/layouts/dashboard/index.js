@@ -4,8 +4,10 @@ import { Stack } from "@mui/system";
 import SideBar from "./SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { connectSocket, socket } from "../../socket";
-import { showSnackbar } from "../../redux/slices/app";
+import { SelectConversation, showSnackbar } from "../../redux/slices/app";
+// import { AddDirectConversation, UpdateDirectConversation } from "../../redux/slices/conversations";
 // const isAuth = true;
+
 const DashboardLayout = () => {
   const dispatch = useDispatch();
   // todo: create a redux slice
@@ -28,7 +30,7 @@ const DashboardLayout = () => {
       // events
       // 1. new friend request.
       socket.on("new_friend_request", (data) => {
-        dispatchEvent(
+        dispatch(
           showSnackbar({
             severity: "success",
             message: data.message,
@@ -36,7 +38,7 @@ const DashboardLayout = () => {
         );
       });
       socket.on("request_accepted", (data) => {
-        dispatchEvent(
+        dispatch(
           showSnackbar({
             severity: "success",
             message: data.message,
@@ -44,7 +46,7 @@ const DashboardLayout = () => {
         );
       });
       socket.on("request_sent", (data) => {
-        dispatchEvent(
+        dispatch(
           showSnackbar({
             severity: "success",
             message: data.message,
@@ -53,9 +55,11 @@ const DashboardLayout = () => {
       });
     }
     // return ()=>{
-    //   socket.off("new_friend_request")
-    //   socket.off("request_accepted")
-    //   socket.off("request_sent");
+    //   socket.removeAllListeners([
+    //     "new_friend_request",
+    //     "accept_request",
+    //     "request_sent",
+    //   ]);
     // }
   }, [isLoggedIn, socket]);
   if (!isLoggedIn) {

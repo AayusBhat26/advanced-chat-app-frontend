@@ -9,16 +9,15 @@ import {
   Button,
 } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
-import { Chat } from "phosphor-react";
+import { Chat, ChatCircleDots } from "phosphor-react";
 import { socket } from "../socket";
-
-const user_id = window.localStorage.getItem("user_id");
 
 const StyledChatBox = styled(Box)(({ theme }) => ({
   "&:hover": {
     cursor: "pointer",
   },
 }));
+  const user_id = window.localStorage.getItem("user_id");
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -50,6 +49,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const UserElement = ({ img, firstName, lastName, online, _id }) => {
+
   const theme = useTheme();
 
   const name = `${firstName} ${lastName}`;
@@ -103,6 +103,19 @@ const UserElement = ({ img, firstName, lastName, online, _id }) => {
   );
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 const FriendRequestElement = ({
   img,
   firstName,
@@ -153,7 +166,7 @@ const FriendRequestElement = ({
           <Button
             onClick={() => {
               //  emit "accept_request" event
-              socket.emit("accept_request", { request_id: id });
+              socket.emit("request_accepted", { request_id: id });
             }}
           >
             Accept Request
@@ -166,14 +179,9 @@ const FriendRequestElement = ({
 
 // FriendElement
 
-const FriendElement = ({
-  img,
-  firstName,
-  lastName,
-  online,
-  _id,
-}) => {
+const FriendElement = ({ img, firstName, lastName, online, _id }) => {
   const theme = useTheme();
+  // const user_id = window.localStorage.getItem("user_id");
 
   const name = `${firstName} ${lastName}`;
 
@@ -211,14 +219,12 @@ const FriendElement = ({
           </Stack>
         </Stack>
         <Stack direction={"row"} spacing={2} alignItems={"center"}>
-          <IconButton
-            onClick={() => {
-              // start a new conversation
-              socket.emit("start_conversation", { to: _id, from: user_id });
-            }}
-          >
-            <Chat />
-          </IconButton>
+         <IconButton onClick={()=>{
+          // todo: start a new convo.
+          socket.emit("start_conversation", { to: _id, from: user_id });
+         }}>
+          <ChatCircleDots />
+         </IconButton>
         </Stack>
       </Stack>
     </StyledChatBox>

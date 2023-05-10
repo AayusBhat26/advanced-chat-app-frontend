@@ -23,22 +23,24 @@ import { useSelector, useDispatch } from "react-redux";
 import { ToogleSidebarState } from "../../redux/slices/sidebar";
 import Friends from "../../sections/main/Friends";
 import { socket } from "../../socket";
+// import { FetchDirectConversation } from "../../redux/slices/conversations";
 const user_id = window.localStorage.getItem("user_id");
 const Chats = () => {
   const dispatch = useDispatch();
   const change = useSelector((state) => state.sidebarToggle.sidebarToggle);
   const theme = useTheme();
+  // useEffect(() => {
+  //   socket.emit("get_direct_conversations", { user_id }, (data) => {
+  //     console.log(data); // this data is the list of conversations
+  //     // dispatch action
+
+  //     dispatch(FetchDirectConversation({ conversations: data }));
+  //   });
+  // }, []);
   const [openDialog, setOpenDialog] = useState(false);
-  const {conversations}=useSelector((state)=>state.conversation.direct_chat)
-
-  // when component is loaded or redenred for the first time we want the list of chats
-  useEffect(()=>{
-    socket.emit("get_direct_conversations", {user_id}, (data)=>{
-      // data is the list of convos.
-
-    });
-  },[]);
-
+  // const { conversations } = useSelector(
+  //   (state) => state.conversation.direct_chat
+  // );
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
@@ -80,13 +82,12 @@ const Chats = () => {
             </Typography>
             <Stack direction={"row"} alignItems={"center"} spacing={1}>
               <Tooltip title="Friends">
-                <IconButton>
-                  <Users
-                    size={20}
-                    onClick={() => {
-                      handleOpenDialog();
-                    }}
-                  />
+                <IconButton
+                  onClick={() => {
+                    handleOpenDialog();
+                  }}
+                >
+                  <Users size={20} />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Sidebar">
@@ -139,26 +140,7 @@ const Chats = () => {
           >
             {/* pinned chats */}
 
-            <Stack spacing={1.5}>
-              {/* <Typography
-                // variant="subtitle2"
-                fontSize={"16px"}
-                fontWeight={"800"}
-                sx={{
-                  color: "#676767",
-                }}
-              >
-                Social.Messages.Pinned
-              </Typography>
-              <Divider />
-
-              {ChatList.filter((element) => element.pinned).map(
-                (singleChat) => {
-                  return <ChatComponent {...singleChat} />;
-                }
-              )} */}
-              {/* todo: create a pinned messages section. */}
-            </Stack>
+            {/* <Stack spacing={1.5}></Stack> */}
 
             {/* todo: create all messages section */}
             <Stack spacing={1.5}>
@@ -173,11 +155,6 @@ const Chats = () => {
               </Typography>
               <Divider />
 
-              {conversations
-                .filter((element) => !element.pinned)
-                .map((singleChat) => {
-                  return <ChatComponent {...singleChat} />;
-                })}
             </Stack>
           </Stack>
           {/* <Box>

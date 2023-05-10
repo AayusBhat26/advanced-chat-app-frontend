@@ -37,7 +37,7 @@ const slice = createSlice({
       state.sidebar.type = action.payload.type;
     },
     openSnackBar(state, action) {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.snackbar.open = true;
       state.snackbar.severity = action.payload.severity;
       state.snackbar.message = action.payload.message;
@@ -111,7 +111,7 @@ export function FetchUsers() {
         }
       )
       .then((response) => {
-        // console.log(response);
+        console.log(response);
         dispatch(slice.actions.updateUsers({ users: response.data.data }));
       })
       .catch((err) => {
@@ -134,8 +134,10 @@ export function FetchFriends() {
         }
       )
       .then((response) => {
-        console.log(response.data.data.friends);
-        dispatch(slice.actions.updateFriends({ friends: response.data.data.friends }));
+        console.log(response);
+        dispatch(
+          slice.actions.updateFriends({ friends: response.data.data })
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -156,9 +158,11 @@ export function FetchFriendRequests() {
         }
       )
       .then((response) => {
-        console.log(response);
+        console.log(response.data.data);
         dispatch(
-          slice.actions.updateFriendRequests({ requests: response.data.data })
+          slice.actions.updateFriendRequests({
+            requests: response.data.data,
+          })
         );
       })
       .catch((err) => {

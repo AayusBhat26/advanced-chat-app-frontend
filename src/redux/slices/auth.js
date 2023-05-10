@@ -204,7 +204,7 @@ export function VerifyEmail(formValues) {
             token: response.data.token,
           })
         );
-
+        window.localStorage.setItem("user_id", response.data.user_id);
         dispatch();
         // showSnackbar({ severity: "success", message: response.data.message })
         dispatch(

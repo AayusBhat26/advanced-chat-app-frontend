@@ -37,13 +37,13 @@ function App() {
           autoHideDuration={4000}
           key={vertical + horizontal}
           onClose={() => {
-            console.log("This is clicked");
+            // console.log("This is clicked");
             dispatch(closeSnackBar());
           }}
         >
           <Alert
             onClose={() => {
-              console.log("This is clicked");
+              // console.log("This is clicked");
               dispatch(closeSnackBar());
             }}
             severity={severity}
