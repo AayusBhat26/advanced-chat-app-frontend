@@ -21,6 +21,13 @@ const initialState = {
   chat_type: null,
   room_id: null,
   call_logs: [],
+  user: {
+    firstName: "",
+    lastName: "",
+    email: "",
+    level: "",
+    status: "",
+  },
 };
 
 // creating a slice.
@@ -62,6 +69,14 @@ const slice = createSlice({
     selectConversation(state, action) {
       state.chat_type = "individual";
       state.room_id = action.payload.room_id;
+    },
+    userDetails(state, action) {
+      // state.user.firstName = action.payload.firstName;
+      state.user.firstName = action.payload.firstName;
+      state.user.lastName = action.payload.lastName;
+      state.user.email = action.payload.email;
+      state.user.level = action.payload.level;
+      state.user.status = action.payload.status
     },
   },
 });
@@ -135,9 +150,7 @@ export function FetchFriends() {
       )
       .then((response) => {
         console.log(response);
-        dispatch(
-          slice.actions.updateFriends({ friends: response.data.data })
-        );
+        dispatch(slice.actions.updateFriends({ friends: response.data.data }));
       })
       .catch((err) => {
         console.log(err);
@@ -176,3 +189,30 @@ export const SelectConversation = ({ room_id }) => {
     dispatch(slice.actions.selectConversation({ room_id }));
   };
 };
+
+export function UpdateUserDetails() {
+  return async (dispatch, getState) => {
+    await axios
+      .get("/user/getme/", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getState().auth.token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data.data[0].firstName);
+        dispatch(
+          slice.actions.userDetails({
+            firstName: response.data.data[0].firstName,
+            lastName: response.data.data[0].lastName,
+            email: response.data.data[0].email,
+            level: response.data.data[0].level,
+            status: response.data.data[0].status,
+          })
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}

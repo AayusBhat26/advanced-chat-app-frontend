@@ -23,6 +23,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { ToogleSidebarState } from "../../redux/slices/sidebar";
 import Friends from "../../sections/main/Friends";
 import { socket } from "../../socket";
+import { UpdateUserDetails } from "../../redux/slices/app";
+// import { UpdateUserDetails } from "../../redux/slices/user";
 // import { FetchDirectConversation } from "../../redux/slices/conversations";
 const user_id = window.localStorage.getItem("user_id");
 const Chats = () => {
@@ -41,7 +43,9 @@ const Chats = () => {
   // const { conversations } = useSelector(
   //   (state) => state.conversation.direct_chat
   // );
-
+  useEffect(() => {
+    dispatch(UpdateUserDetails());
+  }, []);
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
@@ -143,6 +147,7 @@ const Chats = () => {
             {/* <Stack spacing={1.5}></Stack> */}
 
             {/* todo: create all messages section */}
+            
             <Stack spacing={1.5}>
               <Typography
                 fontSize={"16px"}

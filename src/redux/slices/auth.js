@@ -56,6 +56,9 @@ export function LoginUser(formValues) {
             token: response.data.token,
           })
         );
+         dispatch(
+           slice.actions.updateRegisterEmail({ email: response.data.email })
+         );
         window.localStorage.setItem("user_id", response.data.user_id);
         dispatch(
           showSnackbar({
@@ -196,7 +199,9 @@ export function VerifyEmail(formValues) {
       )
       .then(function (response) {
         console.log(response);
-        // dispatch(slice.actions.updateRegisterEmail({ email: "" }));
+        dispatch(
+          slice.actions.updateRegisterEmail({ email: response.data.email })
+        );
         window.localStorage.setItem("user_id", response.data.user_id);
         dispatch(
           slice.actions.logIn({
@@ -205,7 +210,6 @@ export function VerifyEmail(formValues) {
           })
         );
         window.localStorage.setItem("user_id", response.data.user_id);
-        dispatch();
         // showSnackbar({ severity: "success", message: response.data.message })
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: false })

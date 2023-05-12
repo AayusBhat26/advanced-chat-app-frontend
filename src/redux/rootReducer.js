@@ -7,6 +7,7 @@ import storage from "redux-persist/lib/storage"; // it provides the access to lo
 import appReducer from "./slices/app";
 import authReducer from "./slices/auth";
 import sidebarReducer from "./slices/sidebar"
+
 // nslices.
 
 const rootPersistConfig = {
