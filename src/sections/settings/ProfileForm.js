@@ -12,7 +12,11 @@ import {
 } from "@mui/material";
 import { TextFieldAdv } from "../../components/hook-form";
 // import { Eye, EyeClosed } from "phosphor-react";
+import { useSelector } from "react-redux";
+
 const ProfileForm = () => {
+  const user = useSelector((store) => store.app.user);
+
   // validation rules
   const ProfileSchema = Yup.object().shape({
     name: Yup.string().required("Name is Required"),
@@ -21,7 +25,7 @@ const ProfileForm = () => {
   });
 
   const defaultValues = {
-    name: "demo name",
+    name: user.firstName + user.lastName,
     about: "About",
   };
 

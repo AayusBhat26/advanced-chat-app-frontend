@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 
 const Settings = () => {
   // level from store.
-  const {user} = useSelector((store)=>store.app)
+  const user = useSelector((store)=>store.app.user)
   const theme = useTheme();
   // keyboard shortcuts closing andopening state.
   const [keyboardShortcutState, setKeyboardShortcutState] = useState(false);
@@ -102,7 +102,13 @@ const Settings = () => {
             }}
           >
             {/* title */}
-            <Stack direction={"row"} alignItems={"center"} spacing={3} marginTop={"10px"} marginBottom={10}>
+            <Stack
+              direction={"row"}
+              alignItems={"center"}
+              spacing={3}
+              marginTop={"10px"}
+              marginBottom={10}
+            >
               <IconButton>
                 <CaretLeft size={24} color="#4B4B4B" />
               </IconButton>
@@ -129,12 +135,15 @@ const Settings = () => {
                 <Stack spacing={0.5}>
                   {/* name */}
                   <Typography variant="article">
-                    {faker.name.fullName()}, hi{user}
+                    {`${user.firstName} ${user.lastName}`}
+                    {/* {faker.name.fullName()}hell0o */}
+                    {
+                      // useSelector((state)=>state.app.user[0])
+                      // console.log(user.firstName)
+                    }
                   </Typography>
                   {/* bio */}
-                  <Typography variant="body2">
-                    {faker.random.words()}
-                  </Typography>
+                  <Typography variant="body2">{`${user.email}`}</Typography>
                 </Stack>
               </Stack>
               <Stack spacing={4}>

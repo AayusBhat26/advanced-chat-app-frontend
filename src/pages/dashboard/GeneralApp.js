@@ -12,6 +12,8 @@ import { Spinner } from "phosphor-react";
 import "./index.css";
 
 const GeneralApp = () => {
+  const user = useSelector((store) => store.app.user);
+
   const theme = useTheme();
   // todo: use useSelector method to select the data from store.
   const { sidebar, chat_type, room_id } = useSelector((store) => store.app);
@@ -50,7 +52,19 @@ const GeneralApp = () => {
             alignItems={"center"}
             justifyContent={"center"}
           >
-            <Spinner size={400} className="loader"/>
+            <Spinner size={400} className="loader" />
+            {/* user name */}
+            <Stack direction={"row"} spacing={0.7}>
+              <Typography>Hello,</Typography>
+              <Typography>
+                {user.firstName[0].toUpperCase() + user.firstName.substring(1)}
+
+                {/* {console.log(user.firstName[0].toUpperCase())} */}
+              </Typography>
+              <Typography>
+                {user.lastName[0].toUpperCase() + user.lastName.substring(1)}
+              </Typography>
+            </Stack>
             <Typography variant="subtitle2">
               Select A converstion or Start A New One
             </Typography>
