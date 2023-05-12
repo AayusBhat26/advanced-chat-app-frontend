@@ -25,6 +25,7 @@ const Group = () => {
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
+  
   return (
     <>
       <Stack

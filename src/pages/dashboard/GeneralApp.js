@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Chats from "./Chats";
 import { Box, Fade, Stack, Typography } from "@mui/material";
 import Converstion from "../../components/converstion";
@@ -10,10 +10,18 @@ import { StarredMessages } from "../../components/StarredMessages";
 import { SharedMessages } from "../../components/SharedMessages";
 import { Spinner } from "phosphor-react";
 import "./index.css";
+import { useNavigate } from "react-router-dom";
 
 const GeneralApp = () => {
+  const navigate = useNavigate();
   const user = useSelector((store) => store.app.user);
+  const userInfo = useSelector((state) => state.auth.isLoggedIn);
 
+  // useEffect(() => {
+  //   if (userInfo) {
+  //     navigate("/app");
+  //   }
+  // }, [userInfo]);
   const theme = useTheme();
   // todo: use useSelector method to select the data from store.
   const { sidebar, chat_type, room_id } = useSelector((store) => store.app);

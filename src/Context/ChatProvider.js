@@ -6,26 +6,24 @@ const ChatContext = createContext();
 
 const ChatProvider = ({ children }) => {
   const [selectedChat, setSelectedChat] = useState();
-  const [user, setUser] = useState();
+  // const [user, setUser] = useState();
   const [notification, setNotification] = useState([]);
   const [chats, setChats] = useState();
 
-  // const navigate = useNavigate();
-  //     const userInfo = useSelector((state) => state.auth.isLoggedIn);
-  // useEffect(() => {
-  //   setUser(userInfo);
-
-  //   if (!userInfo) navigate("/");
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [navigate]);
-
+  const navigate = useNavigate();
+  const userInfo = useSelector((state) => state.auth.isLoggedIn);
+  // useEffect(()=>{
+  //   if (!userInfo) {
+  //     navigate("/auth/login");
+  //   }
+  // }, [])
   return (
     <ChatContext.Provider
       value={{
         selectedChat,
         setSelectedChat,
-        user,
-        setUser,
+        // user,
+        // setUser,
         notification,
         setNotification,
         chats,
