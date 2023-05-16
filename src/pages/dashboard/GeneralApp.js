@@ -16,12 +16,6 @@ const GeneralApp = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.app.user);
   const userInfo = useSelector((state) => state.auth.isLoggedIn);
-
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     navigate("/app");
-  //   }
-  // }, [userInfo]);
   const theme = useTheme();
   // todo: use useSelector method to select the data from store.
   const { sidebar, chat_type, room_id } = useSelector((store) => store.app);
@@ -65,12 +59,8 @@ const GeneralApp = () => {
             <Stack direction={"row"} spacing={0.7}>
               <Typography>Hello,</Typography>
               <Typography>
-                {user.firstName[0].toUpperCase() + user.firstName.substring(1)}
-
-                {/* {console.log(user.firstName[0].toUpperCase())} */}
               </Typography>
               <Typography>
-                {user.lastName[0].toUpperCase() + user.lastName.substring(1)}
               </Typography>
             </Stack>
             <Typography variant="subtitle2">

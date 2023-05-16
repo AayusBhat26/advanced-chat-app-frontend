@@ -44,7 +44,7 @@ const FriendsList = () => {
   const { friends } = useSelector((state) => state.app);
 
   console.log(friends);
-
+  
   return (
     <>
       {friends.map((el, idx) => {

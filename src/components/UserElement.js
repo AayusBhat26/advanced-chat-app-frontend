@@ -11,7 +11,9 @@ import {
 import { styled, useTheme } from "@mui/material/styles";
 import { Chat, ChatCircleDots } from "phosphor-react";
 import { socket } from "../socket";
-
+import { useSelector } from "react-redux";
+import axios from "../utils/axios";
+import { ChatState } from "../Context/ChatProvider";
 const StyledChatBox = styled(Box)(({ theme }) => ({
   "&:hover": {
     cursor: "pointer",
@@ -180,11 +182,30 @@ const FriendRequestElement = ({
 // FriendElement
 
 const FriendElement = ({ img, firstName, lastName, online, _id }) => {
+  const { setSelectedChat, chats,setChats } = ChatState();
+  console.log(chats);
   const theme = useTheme();
   // const user_id = window.localStorage.getItem("user_id");
-
+  const token = useSelector((state)=>state.auth.token); 
+  // console.log(token);
   const name = `${firstName} ${lastName}`;
-
+  const accessChat = async (userId)=>{
+   
+   try {
+    const config = {
+      headers:{
+        "Content-Type": "application/json",
+        Authorization:`Bearer ${token}`
+      }
+    }
+    const {data} = await axios.post("/chatapi/", {userId}, config)
+    console.log(data);
+    if(!chats.find((c)=>c._id===data._id)) setChats([data, ...chats])
+    setSelectedChat(data)
+   } catch (error) {
+    console.log(error.message);
+   }
+  }
   return (
     <StyledChatBox
       sx={{
@@ -219,9 +240,14 @@ const FriendElement = ({ img, firstName, lastName, online, _id }) => {
           </Stack>
         </Stack>
         <Stack direction={"row"} spacing={2} alignItems={"center"}>
+          {
+            // console.log(_id)
+          }
          <IconButton onClick={()=>{
           // todo: start a new convo.
-          socket.emit("start_conversation", { to: _id, from: user_id });
+          // alert("this is clicked", _id)
+          // console.log(_id)
+          accessChat(_id)
          }}>
           <ChatCircleDots />
          </IconButton>

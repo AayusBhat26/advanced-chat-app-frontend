@@ -24,25 +24,21 @@ import { ToogleSidebarState } from "../../redux/slices/sidebar";
 import Friends from "../../sections/main/Friends";
 import { socket } from "../../socket";
 import { UpdateUserDetails } from "../../redux/slices/app";
-// import { UpdateUserDetails } from "../../redux/slices/user";
-// import { FetchDirectConversation } from "../../redux/slices/conversations";
+import { ChatState } from "../../Context/ChatProvider";
+
+import axios from "../../utils/axios";
+import { getSender } from "../../config/ChatLogics";
+
 const user_id = window.localStorage.getItem("user_id");
 const Chats = () => {
+  const [loggedUser, setLoggedUser] = useState()
+  const {selectedChat, setSelectedChat, chats, setChats} = ChatState();
+  const token = useSelector((state)=>state.auth.token)
   const dispatch = useDispatch();
   const change = useSelector((state) => state.sidebarToggle.sidebarToggle);
   const theme = useTheme();
-  // useEffect(() => {
-  //   socket.emit("get_direct_conversations", { user_id }, (data) => {
-  //     console.log(data); // this data is the list of conversations
-  //     // dispatch action
 
-  //     dispatch(FetchDirectConversation({ conversations: data }));
-  //   });
-  // }, []);
   const [openDialog, setOpenDialog] = useState(false);
-  // const { conversations } = useSelector(
-  //   (state) => state.conversation.direct_chat
-  // );
   useEffect(() => {
     dispatch(UpdateUserDetails());
   }, []);
@@ -52,6 +48,28 @@ const Chats = () => {
   const handleOpenDialog = () => {
     setOpenDialog(true);
   };
+  const fetchChats = async ()=>{
+      await axios
+        .get(
+          "/chatapi/",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+          setChats(response.data);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+  }
+  useEffect(()=>{
+    fetchChats();
+  }, [])
 
   return (
     <>
@@ -147,7 +165,7 @@ const Chats = () => {
             {/* <Stack spacing={1.5}></Stack> */}
 
             {/* todo: create all messages section */}
-            
+
             <Stack spacing={1.5}>
               <Typography
                 fontSize={"16px"}
@@ -159,12 +177,37 @@ const Chats = () => {
                 PROD.Messages.All
               </Typography>
               <Divider />
-
+            </Stack>
+            <Stack overflow={"scroll"} width={"100%"}>
+              {chats ? chats.map((single)=>{
+                return (
+                  <Box
+                    onClick={() => {
+                      setSelectedChat(single);
+                    }}
+                    sx={{
+                      border: "1px solid",
+                      marginTop: "15px",
+                      padding: "20px",
+                      borderRadius: "10px",
+                      backgroundColor:
+                        selectedChat === single ? "#acc2ef" : "inherit",
+                    }}
+                    display={!single.isGroupChat ? "block" : "none"}
+                  >
+                    <Typography>
+                      {!single.isGroupChat ? (
+                        // user_id.toString() === single.users
+                        user_id===single.users[0]._id.toString() ? single.users[1].firstName : "" 
+                      ) : (
+                        <></>
+                      )}
+                    </Typography>
+                  </Box>
+                );
+              }) : <> does exists</>}
             </Stack>
           </Stack>
-          {/* <Box>
-          <Typography>Lvl 0</Typography>
-        </Box> */}
         </Stack>
       </Box>
       {openDialog && (
