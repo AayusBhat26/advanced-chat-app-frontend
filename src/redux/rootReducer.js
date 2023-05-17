@@ -7,7 +7,7 @@ import storage from "redux-persist/lib/storage"; // it provides the access to lo
 import appReducer from "./slices/app";
 import authReducer from "./slices/auth";
 import sidebarReducer from "./slices/sidebar"
-// import conversationReducer from "./slices/conversation";
+import conversationReducer from "./slices/conversation";
 
 // nslices.
 
@@ -22,6 +22,6 @@ const rootReducer = combineReducers({
   app: appReducer,
   auth: authReducer,
   sidebarToggle: sidebarReducer,
-  // conversation:conversationReducer
+  conversation:conversationReducer
 });
 export { rootPersistConfig, rootReducer };

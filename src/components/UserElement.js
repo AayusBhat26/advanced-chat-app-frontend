@@ -182,37 +182,14 @@ const FriendRequestElement = ({
 // FriendElement
 
 const FriendElement = ({ img, firstName, lastName, online, _id }) => {
-  // const { setSelectedChat, chats,setChats } = ChatState();
-  // console.log(chats);
   const theme = useTheme();
-  // const user_id = window.localStorage.getItem("user_id");
   const token = useSelector((state)=>state.auth.token); 
-  // console.log(token);
   const name = `${firstName} ${lastName}`;
-  // const accessChat = async (userId)=>{
-   
-  //  try {
-  //   const config = {
-  //     headers:{
-  //       "Content-Type": "application/json",
-  //       Authorization:`Bearer ${token}`
-  //     }
-  //   }
-  //   const {data} = await axios.post("/chatapi/", {userId}, config)
-  //   console.log(data);
-  //   if(!chats.find((c)=>c._id===data._id)) setChats([data, ...chats])
-  //   setSelectedChat(data)
-  //  } catch (error) {
-  //   console.log(error.message);
-  //  }
-  // }
   return (
     <StyledChatBox
       sx={{
         width: "100%",
-
         borderRadius: 1,
-
         backgroundColor: theme.palette.background.paper,
       }}
       p={2}
@@ -223,7 +200,6 @@ const FriendElement = ({ img, firstName, lastName, online, _id }) => {
         justifyContent="space-between"
       >
         <Stack direction="row" alignItems={"center"} spacing={2}>
-          {" "}
           {online ? (
             <StyledBadge
               overlap="circular"
@@ -240,13 +216,9 @@ const FriendElement = ({ img, firstName, lastName, online, _id }) => {
           </Stack>
         </Stack>
         <Stack direction={"row"} spacing={2} alignItems={"center"}>
-          {
-            // console.log(_id)
-          }
          <IconButton onClick={()=>{
           // todo: start a new convo.
-          // alert("this is clicked", _id)
-          // console.log(_id)
+          socket.emit("start_conversation", {to:_id, from:user_id})
          }}>
           <ChatCircleDots />
          </IconButton>
