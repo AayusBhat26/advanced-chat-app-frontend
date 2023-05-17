@@ -11,7 +11,7 @@ import ThemeSettings from './components/settings';
 import { closeSnackBar } from "./redux/slices/app";
 import "./App.js"
 import React from "react";
-import ChatProvider from "./Context/ChatProvider";
+// import ChatProvider from "./Context/ChatProvider";
 const vertical = "bottom";
 const horizontal = "center";
 
@@ -25,13 +25,13 @@ function App() {
     );
   return (
     <>
-      <ChatProvider>
+     
         <ThemeProvider>
           <ThemeSettings>
             <Router />
           </ThemeSettings>
         </ThemeProvider>
-      </ChatProvider>
+     
 
       {message && open ? (
         <Snackbar

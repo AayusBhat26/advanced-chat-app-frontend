@@ -24,16 +24,14 @@ import { ToogleSidebarState } from "../../redux/slices/sidebar";
 import Friends from "../../sections/main/Friends";
 import { socket } from "../../socket";
 import { UpdateUserDetails } from "../../redux/slices/app";
-import { ChatState } from "../../Context/ChatProvider";
+
 
 import axios from "../../utils/axios";
-import { getSender } from "../../config/ChatLogics";
+
 
 const user_id = window.localStorage.getItem("user_id");
 const Chats = () => {
-  const [loggedUser, setLoggedUser] = useState()
-  const {selectedChat, setSelectedChat, chats, setChats} = ChatState();
-  const token = useSelector((state)=>state.auth.token)
+  // const token = useSelector((state)=>state.auth.token)
   const dispatch = useDispatch();
   const change = useSelector((state) => state.sidebarToggle.sidebarToggle);
   const theme = useTheme();
@@ -48,28 +46,6 @@ const Chats = () => {
   const handleOpenDialog = () => {
     setOpenDialog(true);
   };
-  const fetchChats = async ()=>{
-      await axios
-        .get(
-          "/chatapi/",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then((response) => {
-          console.log(response.data);
-          setChats(response.data);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-  }
-  useEffect(()=>{
-    fetchChats();
-  }, [])
 
   return (
     <>
@@ -179,39 +155,7 @@ const Chats = () => {
               <Divider />
             </Stack>
             <Stack overflow={"scroll"} width={"100%"}>
-              {chats ? chats.map((single)=>{
-                return (
-                  <Box
-                    onClick={() => {
-                      setSelectedChat(single);
-                    }}
-                    sx={{
-                      // border: "1px solid",
-                      marginTop: "15px",
-                      padding: "20px",
-                      borderRadius: "10px",
-                      backgroundColor:
-                        selectedChat === single
-                          ? "ThreeDDarkShadow"
-                          : "inherit",
-                    }}
-                    // display={!single.isGroupChat ? "block" : "none"}
-                  >
-                    <Typography>
-                      {!single.isGroupChat
-                        ? // user_id.toString() === single.users
-                          user_id === single.users[0]._id.toString()
-                          ? single.users[1].firstName +
-                            " " +
-                            single.users[1].lastName
-                          : single.users[0].firstName +
-                            " " +
-                            single.users[1].lastName
-                        : single.chatName}
-                    </Typography>
-                  </Box>
-                );
-              }) : <> does exists</>}
+              chats
             </Stack>
           </Stack>
         </Stack>

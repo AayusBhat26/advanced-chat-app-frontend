@@ -110,11 +110,11 @@ const GeneralApp = Loadable(
 );
 // desc 
 const ComponentDesc=Loadable(
-  lazy(()=>import("../components/AppDesc/Index"))
+  lazy(()=>import("../components/AppDesc/index"))
 )
 // setting page
 const Settings = Loadable(
-  lazy(() => import("../pages/dashboard/Settings"))
+  lazy(() => import("../pages/dashboard/settings"))
 );
 // call page
 const CallPage = Loadable(lazy(()=>import("../pages/dashboard/Call")))
@@ -128,7 +128,7 @@ const Calendar = Loadable(
 );
 // todo page
 const Todo = Loadable(
-  lazy(() => import("../components/todoComponent/Index"))
+  lazy(() => import("../components/todoComponent/index"))
 );
 // group page
 const GroupPage = Loadable(lazy(() => import("../pages/dashboard/Group")));
