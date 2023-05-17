@@ -186,22 +186,28 @@ const Chats = () => {
                       setSelectedChat(single);
                     }}
                     sx={{
-                      border: "1px solid",
+                      // border: "1px solid",
                       marginTop: "15px",
                       padding: "20px",
                       borderRadius: "10px",
                       backgroundColor:
-                        selectedChat === single ? "#acc2ef" : "inherit",
+                        selectedChat === single
+                          ? "ThreeDDarkShadow"
+                          : "inherit",
                     }}
-                    display={!single.isGroupChat ? "block" : "none"}
+                    // display={!single.isGroupChat ? "block" : "none"}
                   >
                     <Typography>
-                      {!single.isGroupChat ? (
-                        // user_id.toString() === single.users
-                        user_id===single.users[0]._id.toString() ? single.users[1].firstName : "" 
-                      ) : (
-                        <></>
-                      )}
+                      {!single.isGroupChat
+                        ? // user_id.toString() === single.users
+                          user_id === single.users[0]._id.toString()
+                          ? single.users[1].firstName +
+                            " " +
+                            single.users[1].lastName
+                          : single.users[0].firstName +
+                            " " +
+                            single.users[1].lastName
+                        : single.chatName}
                     </Typography>
                   </Box>
                 );

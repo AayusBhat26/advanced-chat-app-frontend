@@ -58,10 +58,6 @@ const GeneralApp = () => {
             {/* user name */}
             <Stack direction={"row"} spacing={0.7}>
               <Typography>Hello,</Typography>
-              <Typography>
-              </Typography>
-              <Typography>
-              </Typography>
             </Stack>
             <Typography variant="subtitle2">
               Select A converstion or Start A New One
