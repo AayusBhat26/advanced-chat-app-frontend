@@ -9,17 +9,16 @@ import {
   Button,
 } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
-import { Chat, ChatCircleDots } from "phosphor-react";
+import { Chat } from "phosphor-react";
 import { socket } from "../socket";
-import { useSelector } from "react-redux";
-import axios from "../utils/axios";
-// import { ChatState } from "../Context/ChatProvider";
+
+const user_id = window.localStorage.getItem("user_id");
+
 const StyledChatBox = styled(Box)(({ theme }) => ({
   "&:hover": {
     cursor: "pointer",
   },
 }));
-  const user_id = window.localStorage.getItem("user_id");
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -51,7 +50,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const UserElement = ({ img, firstName, lastName, online, _id }) => {
-
   const theme = useTheme();
 
   const name = `${firstName} ${lastName}`;
@@ -105,19 +103,6 @@ const UserElement = ({ img, firstName, lastName, online, _id }) => {
   );
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 const FriendRequestElement = ({
   img,
   firstName,
@@ -168,7 +153,7 @@ const FriendRequestElement = ({
           <Button
             onClick={() => {
               //  emit "accept_request" event
-              socket.emit("request_accepted", { request_id: id });
+              socket.emit("accept_request", { request_id: id });
             }}
           >
             Accept Request
@@ -181,15 +166,26 @@ const FriendRequestElement = ({
 
 // FriendElement
 
-const FriendElement = ({ img, firstName, lastName, online, _id }) => {
+const FriendElement = ({
+  img,
+  firstName,
+  lastName,
+  incoming,
+  missed,
+  online,
+  _id,
+}) => {
   const theme = useTheme();
-  const token = useSelector((state)=>state.auth.token); 
+
   const name = `${firstName} ${lastName}`;
+
   return (
     <StyledChatBox
       sx={{
         width: "100%",
+
         borderRadius: 1,
+
         backgroundColor: theme.palette.background.paper,
       }}
       p={2}
@@ -200,6 +196,7 @@ const FriendElement = ({ img, firstName, lastName, online, _id }) => {
         justifyContent="space-between"
       >
         <Stack direction="row" alignItems={"center"} spacing={2}>
+          {" "}
           {online ? (
             <StyledBadge
               overlap="circular"
@@ -216,12 +213,14 @@ const FriendElement = ({ img, firstName, lastName, online, _id }) => {
           </Stack>
         </Stack>
         <Stack direction={"row"} spacing={2} alignItems={"center"}>
-         <IconButton onClick={()=>{
-          // todo: start a new convo.
-          socket.emit("start_conversation", {to:_id, from:user_id})
-         }}>
-          <ChatCircleDots />
-         </IconButton>
+          <IconButton
+            onClick={() => {
+              // start a new conversation
+              socket.emit("start_conversation", { to: _id, from: user_id });
+            }}
+          >
+            <Chat />
+          </IconButton>
         </Stack>
       </Stack>
     </StyledChatBox>

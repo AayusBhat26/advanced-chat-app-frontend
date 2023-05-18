@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import { Alien, Archive, MagnifyingGlass, Users } from "phosphor-react";
 import {
   Stack,
@@ -7,13 +6,9 @@ import {
   IconButton,
   Button,
   Divider,
-  Avatar,
-  Badge,
   useTheme,
 } from "@mui/material";
-// import ChatList from "../../data/index"
-import { ChatList } from "../../data/index";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Tooltip from "@mui/material/Tooltip";
 // import { faker } from "@faker-js/faker";
 import "./index.css";
@@ -22,31 +17,18 @@ import {
   SearchIconWrapper,
   StyledInputBase,
 } from "../../components/Search";
-import ChatComponent from "../../components/ChatComponent";
 import { useSelector, useDispatch } from "react-redux";
 import { ToogleSidebarState } from "../../redux/slices/sidebar";
 import Friends from "../../sections/main/Friends";
-import { socket } from "../../socket";
 
-
-import axios from "../../utils/axios";
 
 const Chats = () => {
   // const token = useSelector((state)=>state.auth.token)
   const dispatch = useDispatch();
   const change = useSelector((state) => state.sidebarToggle.sidebarToggle);
   const theme = useTheme();
-  const { conversations } = useSelector(
-    (state) => state.conversation.direct_chat
-  );
 const user_id = window.localStorage.getItem("user_id");
 
-  useEffect(() => {
-    console.log("inside useeffect chats js");
-    socket.emit("get_direct_conversations", {user_id}, (data)=>{
-      // data => list of curretn conversations      
-    });
-  }, []);
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleCloseDialog = () => {
@@ -164,11 +146,6 @@ const user_id = window.localStorage.getItem("user_id");
               <Divider />
             </Stack>
             <Stack overflow={"scroll"} width={"100%"}>
-              {conversations
-                .filter((el) => !el.pinned)
-                .map((el, idx) => {
-                  return <ChatComponent {...el} />;
-                })}{" "}
             </Stack>
           </Stack>
         </Stack>

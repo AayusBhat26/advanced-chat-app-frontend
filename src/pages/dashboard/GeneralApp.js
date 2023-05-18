@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Chats from "./Chats";
 import { Box, Fade, Stack, Typography } from "@mui/material";
-import Converstion from "../../components/converstion";
 import { useTheme } from "@emotion/react";
 import Contact from "../../components/contact/Contact";
 import { useSelector } from "react-redux";
@@ -10,14 +9,10 @@ import { StarredMessages } from "../../components/StarredMessages";
 import { SharedMessages } from "../../components/SharedMessages";
 import { Spinner } from "phosphor-react";
 import "./index.css";
-import { useNavigate } from "react-router-dom";
+
 
 const GeneralApp = () => {
-  const navigate = useNavigate();
-  const user = useSelector((store) => store.app.user);
-  const userInfo = useSelector((state) => state.auth.isLoggedIn);
   const theme = useTheme();
-  // todo: use useSelector method to select the data from store.
   const { sidebar, chat_type, room_id } = useSelector((store) => store.app);
   return (
     <Stack
@@ -42,8 +37,8 @@ const GeneralApp = () => {
               : theme.palette.background.default,
         }}
       >
-        {room_id !== null && chat_type === "individual" ? (
-          <Converstion />
+        {/* {room_id !== null && chat_type === "individual" ? (
+          ""
         ) : (
           <Stack
             spacing={2}
@@ -55,7 +50,6 @@ const GeneralApp = () => {
             justifyContent={"center"}
           >
             <Spinner size={400} className="loader" />
-            {/* user name */}
             <Stack direction={"row"} spacing={0.7}>
               <Typography>Hello,</Typography>
             </Stack>
@@ -64,6 +58,7 @@ const GeneralApp = () => {
             </Typography>
           </Stack>
         )}
+         */}
       </Box>
 
       {sidebar.open && sidebar.type === "CONTACT" ? (

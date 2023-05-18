@@ -9,6 +9,9 @@ const Index = () => {
 
   return (
     <Box>
+      {/* /main file hai */}
+      To-Do Kanban
+      {/* toggling the sidebar */}
       <Button onClick={() => dispatch(ToogleSidebarState())}>Sidebar</Button>
     </Box>
   );

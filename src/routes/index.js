@@ -9,6 +9,7 @@ import AuthLayout from "../layouts/main";
 // import { DEFAULT_PATH } from "../config";
 import LoadingScreen from "../components/LoadingScreen";
 import { Box } from "@mui/material";
+import GeneralApp from "../pages/dashboard/GeneralApp";
 
 const Loadable = (Component) => (props) => {
   return (
@@ -62,22 +63,17 @@ export default function Router() {
               path: "/",
               element: <ComponentDesc />,
             },
+            // {
+            //   path:"app", element: <div>hi</div>
+            // },
             { path: "app", element: <GeneralApp /> },
             {
               path: "/app/settings",
               element: <Settings />,
             },
             {
-              path: "/app/call",
-              element: <CallPage />,
-            },
-            {
               path: "/app/profile",
               element: <ProfilePage />,
-            },
-            {
-              path: "/app/group",
-              element: <GroupPage />,
             },
             {
               path: "/app/pomodoro",
@@ -92,8 +88,8 @@ export default function Router() {
               element: <Todo />,
             },
             {
-              path:"/app/todo/board", 
-              element:<Borad/>
+              // path:"/app/todo/board", 
+              // element:<Borad/>
             },
             { path: "404", element: <Page404 /> },
             { path: "*", element: <Navigate to="/404" replace /> },
@@ -105,9 +101,9 @@ export default function Router() {
   );
 }
 // general app
-const GeneralApp = Loadable(
-  lazy(() => import("../pages/dashboard/GeneralApp"))
-);
+// const GeneralApp = Loadable(
+//   lazy(() => import("../pages/dashboard/GeneralApp"))
+// );
 // desc 
 const ComponentDesc=Loadable(
   lazy(()=>import("../components/AppDesc/index"))
@@ -116,8 +112,6 @@ const ComponentDesc=Loadable(
 const Settings = Loadable(
   lazy(() => import("../pages/dashboard/settings"))
 );
-// call page
-const CallPage = Loadable(lazy(()=>import("../pages/dashboard/Call")))
 // pomodoro page
 const Pomodoro = Loadable(
   lazy(()=>import("../components/pomodoroComponent/src/index"))
@@ -130,11 +124,6 @@ const Calendar = Loadable(
 const Todo = Loadable(
   lazy(() => import("../components/todoComponent/index"))
 );
-// group page
-const GroupPage = Loadable(lazy(() => import("../pages/dashboard/Group")));
-const Borad = Loadable(lazy(() => import("../components/todoComponent/src/pages/Board")));
-
-
 // login page
 const LoginPage = Loadable(
   lazy(() => import("../pages/auth/Login"))

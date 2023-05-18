@@ -89,7 +89,7 @@ const SideBar = () => {
       sx={{
         backgroundColor: theme.palette.background.paper,
         height: "100vh",
-        width: change ? "7vw" : "0vw",
+        width: change ? "10vw" : "0vw",
         display: change ? "block" : "none",
         // boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
         // zIndex: "10",
