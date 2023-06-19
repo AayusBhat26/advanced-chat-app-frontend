@@ -88,8 +88,8 @@ export default function Router() {
               element: <Todo />,
             },
             {
-              // path:"/app/todo/board", 
-              // element:<Borad/>
+              path: "/app/todo/boards/:boardId",
+              element: <Board />,
             },
             { path: "404", element: <Page404 /> },
             { path: "*", element: <Navigate to="/404" replace /> },
@@ -143,5 +143,6 @@ const ProfilePage=Loadable(lazy(()=>import("../pages/dashboard/Profile.js")))
 // verify otp
 const Verify = Loadable(lazy(() =>import("../pages/auth/Verify")));
 
-
+// particular board
+const Board = Loadable(lazy(()=>import("../components/todoComponent/src/pages/Board")))
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));
